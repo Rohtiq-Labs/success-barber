@@ -1,13 +1,15 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { en } from "@/data/dictionary/en";
-import { images, WHATSAPP_URL } from "@/data/images";
+import { images, videos, WHATSAPP_URL } from "@/data/images";
 import { SiteImage } from "@/components/ui/site-image";
 
 export const SectionHero = (): React.JSX.Element => {
   const bloomRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [useVideo, setUseVideo] = useState(true);
 
   useEffect(() => {
     const bloom = bloomRef.current;
@@ -24,18 +26,60 @@ export const SectionHero = (): React.JSX.Element => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updateMotionPreference = (): void => {
+      setUseVideo(!motionQuery.matches);
+    };
+
+    updateMotionPreference();
+    motionQuery.addEventListener("change", updateMotionPreference);
+
+    return () => motionQuery.removeEventListener("change", updateMotionPreference);
+  }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !useVideo) return;
+
+    const playVideo = async (): Promise<void> => {
+      try {
+        await video.play();
+      } catch {
+        setUseVideo(false);
+      }
+    };
+
+    void playVideo();
+  }, [useVideo]);
+
   return (
     <section
       id="hero"
-      className="relative flex min-h-[600px] h-svh flex-col justify-end overflow-hidden"
+      className="relative flex h-[75vh] flex-col items-start justify-center overflow-hidden md:min-h-[600px] md:h-svh md:items-stretch md:justify-end"
     >
       <div className="absolute inset-0 overflow-hidden bg-charcoal">
-        <SiteImage
-          src={images.hero}
-          alt={en.hero.imageAlt}
-          priority
-          className="object-cover object-center"
-        />
+        {useVideo ? (
+          <video
+            ref={videoRef}
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster={images.hero}
+            className="absolute inset-0 h-full w-full object-cover object-center"
+            aria-hidden="true"
+          >
+            <source src={videos.hero} type="video/mp4" />
+          </video>
+        ) : (
+          <SiteImage
+            src={images.hero}
+            alt={en.hero.imageAlt}
+            priority
+            className="object-cover object-center"
+          />
+        )}
         <div className="hero-lines absolute inset-0 z-1" aria-hidden="true" />
         <div
           ref={bloomRef}
@@ -48,7 +92,7 @@ export const SectionHero = (): React.JSX.Element => {
         />
       </div>
 
-      <div className="relative z-2 px-6 pb-13 md:px-12 md:pb-18">
+      <div className="relative z-2 w-full px-6 text-left md:px-12 md:pb-18">
         <p className="mb-4.5 animate-fade-up text-[0.65rem] font-medium uppercase tracking-[0.35em] text-titanium opacity-0 [animation-delay:0.3s] motion-reduce:opacity-100">
           {en.hero.eyebrow}
         </p>
@@ -61,18 +105,18 @@ export const SectionHero = (): React.JSX.Element => {
         <p className="mb-9 max-w-[260px] animate-fade-up font-serif text-[1.05rem] italic leading-snug text-ivory/55 opacity-0 [animation-delay:0.9s] motion-reduce:opacity-100">
           {en.hero.subtitle}
         </p>
-        <div className="flex animate-fade-up gap-3.5 opacity-0 [animation-delay:1.2s] motion-reduce:opacity-100">
+        <div className="flex animate-fade-up justify-start gap-3.5 opacity-0 [animation-delay:1.2s] motion-reduce:opacity-100">
           <a
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-ivory px-6.5 py-3.5 text-[0.7rem] font-medium uppercase tracking-[0.22em] text-charcoal transition-colors hover:bg-titanium hover:text-ivory"
+            className="btn-luxury inline-block bg-ivory px-6.5 py-3.5 text-[0.7rem] font-medium uppercase tracking-[0.22em] text-charcoal hover:bg-titanium hover:text-ivory"
           >
             {en.hero.bookCta}
           </a>
           <Link
             href="#experience"
-            className="inline-block border-b border-ivory/20 py-3.5 text-[0.7rem] uppercase tracking-[0.22em] text-ivory/60 transition-colors hover:border-ivory hover:text-ivory"
+            className="btn-ghost inline-block border-b border-ivory/20 py-3.5 text-[0.7rem] uppercase tracking-[0.22em] text-ivory/60 hover:border-ivory hover:text-ivory"
           >
             {en.hero.exploreCta}
           </Link>

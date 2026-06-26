@@ -1,7 +1,9 @@
 import { en } from "@/data/dictionary/en";
-import { images } from "@/data/images";
+import { images, videos } from "@/data/images";
+import { LuxuryImageFrame } from "@/components/ui/luxury-image-frame";
 import { Reveal } from "@/components/ui/reveal";
 import { SiteImage } from "@/components/ui/site-image";
+import { SpaceFeatureVideo } from "@/components/sections/section-space/space-feature-video";
 
 export const SectionSpace = (): React.JSX.Element => {
   return (
@@ -23,18 +25,17 @@ export const SectionSpace = (): React.JSX.Element => {
 
       <Reveal className="flex flex-col gap-[3px]">
         <div className="group relative aspect-video overflow-hidden">
-          <div className="relative h-full w-full overflow-hidden">
-            <SiteImage
-              src={images.space[0]}
+          <LuxuryImageFrame className="h-full w-full">
+            <SpaceFeatureVideo
+              src={videos.space}
+              poster={images.space[0]}
               alt={en.space.panels[0].alt}
-              sizes="100vw"
-              className="space-img object-cover object-center transition-transform duration-800 ease-out"
             />
-            <div
-              className="pointer-events-none absolute inset-0 z-1 bg-linear-to-t from-[rgba(14,12,10,0.5)] to-transparent"
-              aria-hidden="true"
-            />
-          </div>
+          </LuxuryImageFrame>
+          <div
+            className="pointer-events-none absolute inset-0 z-1 bg-linear-to-t from-[rgba(14,12,10,0.5)] to-transparent"
+            aria-hidden="true"
+          />
           <span className="absolute bottom-4 left-4 z-2 text-[0.6rem] uppercase tracking-[0.22em] text-ivory/30">
             {en.space.panels[0].caption}
           </span>
@@ -42,23 +43,27 @@ export const SectionSpace = (): React.JSX.Element => {
 
         <div className="grid grid-cols-2 gap-[3px]">
           {en.space.panels.slice(1).map((panel, index) => (
-            <div key={panel.caption} className="group relative aspect-3/4 overflow-hidden">
-              <div className="relative h-full w-full overflow-hidden">
+            <Reveal
+              key={panel.caption}
+              delay={(index % 2) as 0 | 1}
+              className="group relative aspect-3/4 overflow-hidden"
+            >
+              <LuxuryImageFrame className="h-full w-full">
                 <SiteImage
                   src={images.space[index + 1]}
                   alt={panel.alt}
                   sizes="50vw"
-                  className="space-img object-cover object-center transition-transform duration-800 ease-out"
+                  className="space-img object-cover object-center"
                 />
-                <div
-                  className="pointer-events-none absolute inset-0 z-1 bg-linear-to-t from-[rgba(14,12,10,0.35)] to-transparent"
-                  aria-hidden="true"
-                />
-              </div>
+              </LuxuryImageFrame>
+              <div
+                className="pointer-events-none absolute inset-0 z-1 bg-linear-to-t from-[rgba(14,12,10,0.35)] to-transparent"
+                aria-hidden="true"
+              />
               <span className="absolute bottom-4 left-4 z-2 text-[0.6rem] uppercase tracking-[0.22em] text-ivory/30">
                 {panel.caption}
               </span>
-            </div>
+            </Reveal>
           ))}
         </div>
       </Reveal>

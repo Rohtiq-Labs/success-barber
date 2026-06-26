@@ -23,16 +23,18 @@ export const SectionArtists = (): React.JSX.Element => {
 
       <div className="flex gap-[3px] overflow-x-auto px-6 py-12 [scrollbar-width:none] md:px-10 md:pb-15 [&::-webkit-scrollbar]:hidden">
         {en.artists.members.map((artist, index) => (
-          <article
+          <Reveal
             key={artist.num}
-            className="group w-[72vw] max-w-[280px] shrink-0 md:max-w-xs"
+            delay={(index % 4) as 0 | 1 | 2 | 3}
+            className="w-[72vw] max-w-[280px] shrink-0 md:max-w-xs"
           >
+            <article className="group h-full">
             <div className="relative mb-5 aspect-3/4 overflow-hidden bg-concrete">
               <SiteImage
                 src={images.artists[index]}
                 alt={artist.alt}
                 sizes="280px"
-                className="artist-img object-cover object-center transition-transform duration-800 ease-out"
+                className="artist-img object-cover object-center"
               />
               <span className="absolute top-4 right-4 z-2 font-serif text-[0.7rem] italic text-ivory/25">
                 {artist.num}
@@ -47,7 +49,8 @@ export const SectionArtists = (): React.JSX.Element => {
             <p className="text-[0.78rem] leading-[1.7] text-ivory/35">
               {artist.spec}
             </p>
-          </article>
+            </article>
+          </Reveal>
         ))}
       </div>
     </section>

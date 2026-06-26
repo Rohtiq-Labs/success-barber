@@ -37,7 +37,7 @@ export const SectionNav = (): React.JSX.Element => {
         href={WHATSAPP_URL}
         target="_blank"
         rel="noopener noreferrer"
-        className={`px-5 py-2.5 text-[0.7rem] font-medium uppercase tracking-[0.2em] transition-colors duration-300 ${
+        className={`btn-luxury px-5 py-2.5 text-[0.7rem] font-medium uppercase tracking-[0.2em] ${
           scrolled
             ? "bg-charcoal text-ivory hover:bg-titanium"
             : "bg-ivory text-charcoal hover:bg-charcoal hover:text-ivory"

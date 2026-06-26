@@ -144,7 +144,7 @@ export const SectionServices = (): React.JSX.Element => {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex shrink-0 items-center justify-center self-start bg-ivory px-8 py-4 text-[0.7rem] font-medium tracking-[0.22em] text-charcoal uppercase transition-colors duration-300 hover:bg-titanium hover:text-ivory md:self-auto"
+            className="btn-luxury inline-flex shrink-0 items-center justify-center self-start bg-ivory px-8 py-4 text-[0.7rem] font-medium tracking-[0.22em] text-charcoal uppercase hover:bg-titanium hover:text-ivory md:self-auto"
           >
             {en.services.cta.button}
           </a>

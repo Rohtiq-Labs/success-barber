@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 
 type RevealProps = {
   children: React.ReactNode;
@@ -21,10 +22,16 @@ export const Reveal = ({
   delay = 0,
 }: RevealProps): React.JSX.Element => {
   const ref = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+
+    if (prefersReducedMotion) {
+      el.classList.add("visible");
+      return;
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -35,12 +42,12 @@ export const Reveal = ({
           }
         });
       },
-      { threshold: 0.12 },
+      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
     );
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, []);
+  }, [prefersReducedMotion]);
 
   return (
     <div

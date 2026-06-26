@@ -112,10 +112,10 @@ body {
 
 .reveal {
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(28px);
   transition:
-    opacity 0.8s ease,
-    transform 0.8s ease;
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .reveal.visible {
@@ -124,15 +124,15 @@ body {
 }
 
 .reveal-delay-1 {
-  transition-delay: 0.15s;
+  transition-delay: 0.12s;
 }
 
 .reveal-delay-2 {
-  transition-delay: 0.3s;
+  transition-delay: 0.24s;
 }
 
 .reveal-delay-3 {
-  transition-delay: 0.45s;
+  transition-delay: 0.36s;
 }
 
 .hero-lines {
@@ -155,14 +155,96 @@ body {
   width: 100%;
 }
 
+.pillar {
+  transition:
+    background-color 0.4s ease,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pillar:hover {
+  transform: translateY(-3px);
+}
+
+.btn-luxury {
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease,
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.btn-luxury:hover {
+  transform: translateY(-2px);
+}
+
+.btn-luxury:active {
+  transform: translateY(0);
+}
+
+.btn-ghost {
+  transition:
+    color 0.35s ease,
+    border-color 0.35s ease,
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.btn-ghost:hover {
+  transform: translateY(-1px);
+}
+
+.link-luxury {
+  position: relative;
+  transition: color 0.35s ease;
+}
+
+.link-luxury::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.link-luxury:hover::after {
+  width: 100%;
+}
+
+.visit-cta {
+  transition:
+    border-color 0.35s ease,
+    background-color 0.35s ease,
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.visit-cta:hover {
+  transform: translateX(4px);
+}
+
+.map-embed-light {
+  filter: grayscale(1) saturate(0) contrast(1.04) brightness(1.02);
+}
+
 .group:hover .gallery-img {
-  transform: scale(1.03);
+  transform: scale(1.04);
 }
 
 .group:hover .space-img {
-  transform: scale(1.02);
+  transform: scale(1.03);
 }
 
 .group:hover .artist-img {
-  transform: scale(1.04);
+  transform: scale(1.05);
+}
+
+.group:hover .experience-img {
+  transform: scale(1.03);
+}
+
+.gallery-img,
+.space-img,
+.artist-img,
+.experience-img {
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
 }

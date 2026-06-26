@@ -39,7 +39,7 @@ export const en = {
       '"Every man who walks in here deserves to walk out transformed."',
     detail:
       "From the moment you enter, the atmosphere signals something different. Premium materials. Measured light. The quiet confidence of a team that lives for their craft.",
-    imageAlt: "Straight razor beard grooming at Success Barbershop",
+    imageAlt: "Success Barber Shop exterior — Westview Terrace, Dubai",
     pillars: [
       {
         number: "I",
@@ -249,7 +249,11 @@ export const en = {
     headlineEm: "your look.",
     address: {
       label: "Address",
-      lines: ["Wharf Tower 1, Shop 3", "Dubai Marina", "Dubai, UAE"],
+      lines: [
+        "Westview Terrace, Shop 1",
+        "Jumeirah Village Circle, Dubai",
+        "United Arab Emirates",
+      ],
     },
     hours: {
       label: "Hours",
@@ -269,7 +273,7 @@ export const en = {
       {
         label: "Directions",
         text: "Get Directions",
-        href: "https://maps.google.com/?q=Wharf+Tower+1+Shop+3+Dubai+Marina+Dubai",
+        href: "https://maps.app.goo.gl/TXVPFD2MWe3iNYvq6",
         external: true,
       },
       {
@@ -279,8 +283,10 @@ export const en = {
         external: true,
       },
     ],
-    mapAlt: "Success Barbershop storefront — Wharf Tower 1, Dubai Marina",
-    mapPin: ["Success Barbershop", "Dubai Marina"],
+  },
+  map: {
+    ariaLabel: "Success Barbershop location map",
+    title: "Map showing Success Barber Shop and Spa at Westview Terrace, Dubai",
   },
   footer: {
     logo: "Success Barbershop",
@@ -293,7 +299,7 @@ export const en = {
       { label: "Visit", href: "#visit" },
       { label: "Instagram", href: "https://www.instagram.com/successbarberdxb/" },
     ],
-    copy: "© 2025 Success Barbershop — Dubai Marina, UAE",
+    copy: "© 2026 Success Barbershop — Dubai, UAE",
   },
 } as const;
 

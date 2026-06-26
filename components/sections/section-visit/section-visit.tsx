@@ -1,8 +1,6 @@
 import { en } from "@/data/dictionary/en";
-import { images } from "@/data/images";
 import { ArrowIcon } from "@/components/ui/arrow-icon";
 import { Reveal } from "@/components/ui/reveal";
-import { SiteImage } from "@/components/ui/site-image";
 
 export const SectionVisit = (): React.JSX.Element => {
   return (
@@ -72,7 +70,10 @@ export const SectionVisit = (): React.JSX.Element => {
       </div>
 
       <div className="flex flex-col gap-[3px] px-6 py-13 md:px-10">
-        {en.visit.ctas.map((cta) => {
+        {en.visit.ctas.map((cta, index) => {
+          const className =
+            "visit-cta group flex items-center justify-between border border-ivory/7 bg-ivory/4 px-6 py-5.5 hover:border-ivory/15 hover:bg-ivory/9";
+
           const content = (
             <>
               <div className="flex flex-col gap-1">
@@ -83,54 +84,31 @@ export const SectionVisit = (): React.JSX.Element => {
                   {cta.text}
                 </span>
               </div>
-              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-ivory/15">
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-ivory/15 transition-colors duration-300 group-hover:border-ivory/30 group-hover:bg-ivory/5">
                 <ArrowIcon />
               </span>
             </>
           );
 
-          const className =
-            "group flex items-center justify-between border border-ivory/7 bg-ivory/4 px-6 py-5.5 transition-colors hover:border-ivory/15 hover:bg-ivory/9";
-
-          return cta.external ? (
-            <a
-              key={cta.label}
-              href={cta.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={className}
-            >
-              {content}
-            </a>
-          ) : (
-            <a key={cta.label} href={cta.href} className={className}>
-              {content}
-            </a>
+          return (
+            <Reveal key={cta.label} delay={(index % 4) as 0 | 1 | 2 | 3}>
+              {cta.external ? (
+                <a
+                  href={cta.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={className}
+                >
+                  {content}
+                </a>
+              ) : (
+                <a href={cta.href} className={className}>
+                  {content}
+                </a>
+              )}
+            </Reveal>
           );
         })}
-      </div>
-
-      <div className="relative h-60 overflow-hidden bg-graphite">
-        <SiteImage
-          src={images.visitMap}
-          alt={en.visit.mapAlt}
-          sizes="100vw"
-        />
-        <div
-          className="pointer-events-none absolute inset-0 z-1 bg-linear-to-t from-[rgba(14,12,10,0.65)] to-[rgba(14,12,10,0.2)]"
-          aria-hidden="true"
-        />
-        <div className="absolute top-1/2 left-1/2 z-3 flex -translate-x-1/2 -translate-y-[60%] flex-col items-center">
-          <div className="relative h-2.5 w-2.5 rounded-full bg-ivory">
-            <span className="absolute -inset-1 animate-pin-pulse rounded-full border border-ivory/30 motion-reduce:animate-none" />
-          </div>
-          <div className="h-5 w-px bg-ivory" />
-          <p className="mt-2 text-center text-[0.6rem] uppercase tracking-[0.15em] whitespace-nowrap text-ivory/40">
-            {en.visit.mapPin[0]}
-            <br />
-            {en.visit.mapPin[1]}
-          </p>
-        </div>
       </div>
     </section>
   );

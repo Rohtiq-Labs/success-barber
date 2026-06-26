@@ -7,6 +7,7 @@ import { SectionNav } from "@/components/sections/section-nav/section-nav";
 import { SectionServices } from "@/components/sections/section-services/section-services";
 import { SectionSpace } from "@/components/sections/section-space/section-space";
 import { SectionTicker } from "@/components/sections/section-ticker/section-ticker";
+import { SectionMap } from "@/components/sections/section-map/section-map";
 import { SectionVisit } from "@/components/sections/section-visit/section-visit";
 
 const Home = (): React.JSX.Element => {
@@ -23,6 +24,7 @@ const Home = (): React.JSX.Element => {
         <SectionSpace />
         <SectionVisit />
       </main>
+      <SectionMap />
       <SectionFooter />
     </>
   );

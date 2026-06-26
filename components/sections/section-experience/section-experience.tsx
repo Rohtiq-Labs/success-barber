@@ -1,5 +1,6 @@
 import { en } from "@/data/dictionary/en";
 import { images } from "@/data/images";
+import { LuxuryImageFrame } from "@/components/ui/luxury-image-frame";
 import { Reveal } from "@/components/ui/reveal";
 import { SiteImage } from "@/components/ui/site-image";
 
@@ -28,11 +29,13 @@ export const SectionExperience = (): React.JSX.Element => {
       </div>
 
       <div className="flex gap-0.5 overflow-x-auto px-6 pb-15 [scrollbar-width:none] md:gap-[3px] md:px-10 md:pb-15 [&::-webkit-scrollbar]:hidden">
-        {en.experience.pillars.map((pillar) => (
-          <div
+        {en.experience.pillars.map((pillar, index) => (
+          <Reveal
             key={pillar.number}
-            className="pillar group relative w-[72vw] max-w-[300px] shrink-0 border border-ivory/7 bg-ivory/4 p-9 transition-colors hover:bg-ivory/7"
+            delay={(index % 4) as 0 | 1 | 2 | 3}
+            className="w-[72vw] max-w-[300px] shrink-0"
           >
+            <div className="pillar group relative h-full border border-ivory/7 bg-ivory/4 p-9 transition-colors hover:bg-ivory/7">
             <span className="mb-6 block font-display text-[5rem] leading-none text-titanium/15">
               {pillar.number}
             </span>
@@ -45,17 +48,21 @@ export const SectionExperience = (): React.JSX.Element => {
               {pillar.desc}
             </p>
             <div className="pillar-bar absolute bottom-0 left-0 h-0.5 w-0 bg-titanium transition-[width] duration-600 ease-out" />
-          </div>
+            </div>
+          </Reveal>
         ))}
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2">
         <Reveal className="relative aspect-4/3 overflow-hidden">
-          <SiteImage
-            src={images.experience}
-            alt={en.experience.imageAlt}
-            sizes="(min-width: 768px) 50vw, 100vw"
-          />
+          <LuxuryImageFrame className="absolute inset-0">
+            <SiteImage
+              src={images.experience}
+              alt={en.experience.imageAlt}
+              sizes="(min-width: 768px) 50vw, 100vw"
+              className="experience-img object-cover object-[center_35%] md:object-center"
+            />
+          </LuxuryImageFrame>
           <div
             className="pointer-events-none absolute inset-0 z-1 bg-linear-to-br from-[rgba(14,12,10,0.15)] to-[rgba(14,12,10,0.45)]"
             aria-hidden="true"
