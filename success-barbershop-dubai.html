@@ -1,0 +1,2047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Success Barbershop — Dubai's First Latin-Inspired Grooming Destination</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --stone: #F2F0EB;
+    --concrete: #E5E1DA;
+    --charcoal: #141414;
+    --graphite: #262626;
+    --titanium: #8C847A;
+    --ivory: #FAF8F4;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Inter', system-ui, sans-serif;
+    --display: 'Bebas Neue', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--stone);
+    color: var(--graphite);
+    font-family: var(--sans);
+    font-weight: 300;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    transition: background 0.5s, backdrop-filter 0.5s;
+  }
+  nav.scrolled {
+    background: rgba(242,240,235,0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 1rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ivory);
+    transition: color 0.5s;
+    text-decoration: none;
+  }
+  nav.scrolled .nav-logo { color: var(--charcoal); }
+  .nav-book {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    background: var(--ivory);
+    padding: 10px 20px;
+    text-decoration: none;
+    transition: background 0.3s, color 0.3s;
+  }
+  .nav-book:hover { background: var(--charcoal); color: var(--ivory); }
+  nav.scrolled .nav-book { background: var(--charcoal); color: var(--ivory); }
+  nav.scrolled .nav-book:hover { background: var(--titanium); }
+
+  /* ── HERO ── */
+  #hero {
+    position: relative;
+    height: 100svh;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: var(--charcoal);
+    overflow: hidden;
+  }
+
+  /* Shared photo treatment */
+  .site-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .img-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background:
+      linear-gradient(to top, rgba(14,12,10,0.88) 0%, rgba(14,12,10,0.35) 45%, rgba(14,12,10,0.55) 100%);
+    pointer-events: none;
+  }
+
+  /* Atmospheric texture lines (architectural feel) */
+  .hero-lines {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background-image:
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 79px,
+        rgba(140,132,122,0.04) 79px,
+        rgba(140,132,122,0.04) 80px
+      );
+  }
+
+  /* Warm light bloom — mimics interior accent lighting */
+  .hero-bloom {
+    position: absolute;
+    top: -10%;
+    right: -10%;
+    z-index: 1;
+    width: 70vw;
+    height: 70vw;
+    max-width: 500px;
+    max-height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,170,120,0.09) 0%, transparent 70%);
+    animation: bloomPulse 6s ease-in-out infinite alternate;
+  }
+
+  @keyframes bloomPulse {
+    from { opacity: 0.6; transform: scale(1); }
+    to { opacity: 1; transform: scale(1.1); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 24px 52px;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--sans);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--titanium);
+    margin-bottom: 18px;
+    opacity: 0;
+    animation: fadeUp 1s 0.3s forwards;
+  }
+
+  .hero-headline {
+    font-family: var(--display);
+    font-size: clamp(3.8rem, 18vw, 7rem);
+    line-height: 0.88;
+    color: var(--ivory);
+    letter-spacing: 0.02em;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 1s 0.6s forwards;
+  }
+
+  .hero-headline em {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 0.55em;
+    letter-spacing: 0.04em;
+    color: rgba(250,248,244,0.7);
+    display: block;
+    margin-top: 4px;
+  }
+
+  .hero-sub {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.05rem;
+    color: rgba(250,248,244,0.55);
+    margin-bottom: 36px;
+    max-width: 260px;
+    line-height: 1.5;
+    opacity: 0;
+    animation: fadeUp 1s 0.9s forwards;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 14px;
+    opacity: 0;
+    animation: fadeUp 1s 1.2s forwards;
+  }
+
+  .btn-primary {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    background: var(--ivory);
+    padding: 14px 26px;
+    text-decoration: none;
+    transition: all 0.3s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--titanium); color: var(--ivory); }
+
+  .btn-ghost {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(250,248,244,0.6);
+    padding: 14px 0;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(250,248,244,0.2);
+    transition: color 0.3s, border-color 0.3s;
+    display: inline-block;
+  }
+  .btn-ghost:hover { color: var(--ivory); border-color: var(--ivory); }
+
+  /* Scroll indicator */
+  .hero-scroll {
+    position: absolute;
+    bottom: 28px;
+    right: 24px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeIn 1s 2s forwards;
+  }
+  .hero-scroll span {
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(250,248,244,0.3);
+    writing-mode: vertical-rl;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, rgba(250,248,244,0.3), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* ── TICKER ── */
+  .ticker {
+    background: var(--charcoal);
+    overflow: hidden;
+    padding: 14px 0;
+    position: relative;
+  }
+  .ticker-track {
+    display: flex;
+    gap: 0;
+    animation: ticker 28s linear infinite;
+    white-space: nowrap;
+  }
+  .ticker-track span {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--titanium);
+    padding: 0 40px;
+    flex-shrink: 0;
+  }
+  .ticker-track span::after {
+    content: '·';
+    margin-left: 40px;
+    color: rgba(140,132,122,0.4);
+  }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ── SECTION BASE ── */
+  section { position: relative; }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.15s; }
+  .reveal-delay-2 { transition-delay: 0.3s; }
+  .reveal-delay-3 { transition-delay: 0.45s; }
+
+  /* ── SECTION 2: THE SUCCESS EXPERIENCE ── */
+  #experience {
+    background: var(--charcoal);
+    padding: 80px 0 0;
+    overflow: hidden;
+  }
+
+  .exp-header {
+    padding: 0 24px 60px;
+  }
+
+  .section-label {
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--titanium);
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .exp-headline {
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 10vw, 4rem);
+    font-weight: 300;
+    color: var(--ivory);
+    line-height: 1.1;
+  }
+
+  .exp-headline em {
+    font-style: italic;
+    color: var(--titanium);
+  }
+
+  .exp-body-text {
+    margin-top: 24px;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: rgba(250,248,244,0.5);
+    max-width: 320px;
+  }
+
+  /* Pillars: horizontal scroll cards */
+  .exp-pillars {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 0 24px 60px;
+    gap: 2px;
+  }
+  .exp-pillars::-webkit-scrollbar { display: none; }
+
+  .pillar {
+    flex: 0 0 72vw;
+    max-width: 300px;
+    background: rgba(250,248,244,0.04);
+    border: 1px solid rgba(250,248,244,0.07);
+    padding: 36px 28px;
+    position: relative;
+    transition: background 0.4s;
+  }
+  .pillar:hover { background: rgba(250,248,244,0.07); }
+
+  .pillar-number {
+    font-family: var(--display);
+    font-size: 5rem;
+    color: rgba(140,132,122,0.15);
+    line-height: 1;
+    margin-bottom: 24px;
+    display: block;
+  }
+
+  .pillar-title {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--ivory);
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  .pillar-desc {
+    font-size: 0.8rem;
+    line-height: 1.7;
+    color: rgba(250,248,244,0.45);
+  }
+
+  .pillar-bar {
+    position: absolute;
+    bottom: 0; left: 0;
+    height: 2px;
+    width: 0;
+    background: var(--titanium);
+    transition: width 0.6s ease;
+  }
+  .pillar:hover .pillar-bar { width: 100%; }
+
+  /* Split editorial block */
+  .exp-split {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .exp-visual {
+    aspect-ratio: 4/3;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .exp-visual .img-overlay {
+    background: linear-gradient(135deg, rgba(14,12,10,0.15) 0%, rgba(14,12,10,0.45) 100%);
+  }
+
+  .exp-text-block {
+    background: var(--stone);
+    padding: 48px 24px;
+  }
+
+  .exp-quote {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: var(--charcoal);
+    line-height: 1.4;
+    margin-bottom: 24px;
+    border-left: 2px solid var(--titanium);
+    padding-left: 20px;
+  }
+
+  .exp-detail {
+    font-size: 0.82rem;
+    line-height: 1.8;
+    color: var(--titanium);
+  }
+
+  /* ── SECTION 3: VISUAL GALLERY ── */
+  #gallery {
+    background: var(--stone);
+    padding: 80px 0;
+  }
+
+  .gallery-header {
+    padding: 0 24px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .gallery-headline {
+    font-family: var(--display);
+    font-size: clamp(3rem, 16vw, 5.5rem);
+    line-height: 0.9;
+    color: var(--charcoal);
+  }
+
+  .gallery-count {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.8rem;
+    color: var(--titanium);
+    letter-spacing: 0.1em;
+  }
+
+  /* Bento-inspired gallery — unique cells */
+  .gallery-bento {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    gap: 3px;
+    padding: 0 3px;
+  }
+
+  .g-cell {
+    position: relative;
+    overflow: hidden;
+    background: var(--concrete);
+  }
+
+  .g-cell-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .g-cell-inner .site-img {
+    transition: transform 0.8s ease;
+  }
+  .g-cell:hover .g-cell-inner .site-img { transform: scale(1.03); }
+
+  /* Scene 1 — Interior wide shot */
+  .g1 {
+    grid-column: 1 / -1;
+    aspect-ratio: 16/9;
+  }
+  .g2 { aspect-ratio: 3/4; }
+  .g3 {
+    aspect-ratio: 3/4;
+  }
+  .g3 .g-cell-inner {
+    display: flex;
+    align-items: flex-end;
+    padding: 24px;
+  }
+  .g3 .img-overlay {
+    background: linear-gradient(to top, rgba(14,12,10,0.75) 0%, rgba(14,12,10,0.15) 55%);
+  }
+  .g4 {
+    grid-column: 1 / -1;
+    aspect-ratio: 3/2;
+  }
+  .g4 .img-overlay {
+    background: linear-gradient(to top, rgba(14,12,10,0.55) 0%, transparent 50%);
+  }
+
+  .g-label {
+    position: absolute;
+    bottom: 12px;
+    left: 16px;
+    z-index: 2;
+    font-family: var(--sans);
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(250,248,244,0.75);
+  }
+
+  .g-quote {
+    position: relative;
+    z-index: 2;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: rgba(250,248,244,0.85);
+    line-height: 1.4;
+  }
+
+  .gallery-cta {
+    margin: 40px 24px 0;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .cta-line {
+    flex: 1;
+    height: 1px;
+    background: var(--concrete);
+  }
+
+  .gallery-cta a {
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--titanium);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.3s;
+  }
+  .gallery-cta a:hover { color: var(--charcoal); }
+
+  /* ── SECTION 4: WHY MEN CHOOSE SUCCESS ── */
+  #why {
+    background: var(--ivory);
+    padding: 80px 0;
+    overflow: hidden;
+  }
+
+  .why-intro {
+    padding: 0 24px 60px;
+  }
+
+  .why-headline {
+    font-family: var(--display);
+    font-size: clamp(2.8rem, 14vw, 5rem);
+    line-height: 0.88;
+    color: var(--charcoal);
+    margin-bottom: 24px;
+  }
+
+  .why-intro-text {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--titanium);
+    line-height: 1.6;
+    max-width: 300px;
+  }
+
+  /* Accordion-style interactive reasons */
+  .reasons {
+    border-top: 1px solid var(--concrete);
+  }
+
+  .reason {
+    border-bottom: 1px solid var(--concrete);
+    overflow: hidden;
+  }
+
+  .reason-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+    cursor: pointer;
+    transition: background 0.3s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .reason-header:hover { background: var(--concrete); }
+
+  .reason-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .reason-num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.75rem;
+    color: var(--titanium);
+    width: 20px;
+  }
+
+  .reason-title {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--charcoal);
+  }
+
+  .reason-icon {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .reason-icon::before, .reason-icon::after {
+    content: '';
+    position: absolute;
+    background: var(--titanium);
+    transition: transform 0.4s ease, opacity 0.4s ease;
+  }
+  .reason-icon::before {
+    width: 14px; height: 1px;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .reason-icon::after {
+    width: 1px; height: 14px;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .reason.open .reason-icon::after { transform: translate(-50%, -50%) rotate(90deg); opacity: 0; }
+
+  .reason-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+  }
+  .reason.open .reason-body { max-height: 300px; }
+
+  .reason-content {
+    padding: 0 24px 28px 60px;
+    font-size: 0.85rem;
+    line-height: 1.8;
+    color: var(--titanium);
+  }
+
+  /* Big statement */
+  .why-statement {
+    padding: 60px 24px;
+    background: var(--charcoal);
+  }
+
+  .statement-text {
+    font-family: var(--serif);
+    font-size: clamp(1.6rem, 8vw, 3rem);
+    font-weight: 300;
+    color: var(--ivory);
+    line-height: 1.3;
+  }
+
+  .statement-text em {
+    font-style: italic;
+    color: var(--titanium);
+  }
+
+  /* ── SECTION 5: TRANSFORMATIONS ── */
+  #transformations {
+    background: var(--stone);
+    padding: 80px 0;
+  }
+
+  .trans-header {
+    padding: 0 24px 48px;
+  }
+
+  .trans-headline {
+    font-family: var(--display);
+    font-size: clamp(2.8rem, 14vw, 5rem);
+    line-height: 0.88;
+    color: var(--charcoal);
+    margin-bottom: 16px;
+  }
+
+  .trans-sub {
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--titanium);
+  }
+
+  /* Before/After slider */
+  .ba-container {
+    margin: 0 24px 24px;
+    position: relative;
+    border-radius: 0;
+    overflow: hidden;
+    aspect-ratio: 4/5;
+    background: var(--charcoal);
+    touch-action: none;
+    cursor: ew-resize;
+  }
+
+  .ba-before, .ba-after {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 24px;
+  }
+
+  .ba-after {
+    clip-path: inset(0 50% 0 0);
+    transition: clip-path 0s;
+  }
+
+  .ba-before-scene,
+  .ba-after-scene {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .ba-divider {
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 50%;
+    width: 2px;
+    background: var(--ivory);
+    transform: translateX(-50%);
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  .ba-handle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--ivory);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 4;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    pointer-events: none;
+  }
+
+  .ba-handle svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .ba-labels {
+    position: absolute;
+    bottom: 20px;
+    left: 0; right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 5;
+    pointer-events: none;
+  }
+
+  .ba-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(250,248,244,0.5);
+    background: rgba(20,20,20,0.4);
+    padding: 4px 10px;
+    backdrop-filter: blur(4px);
+  }
+
+  /* Transformation dots nav */
+  .trans-nav {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    padding: 0 24px 40px;
+  }
+
+  .t-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--concrete);
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+    border: none;
+    padding: 0;
+  }
+  .t-dot.active { background: var(--charcoal); transform: scale(1.3); }
+
+  /* ── SECTION 6: MEET THE ARTISTS ── */
+  #artists {
+    background: var(--charcoal);
+    padding: 80px 0;
+    overflow: hidden;
+  }
+
+  .artists-header {
+    padding: 0 24px 48px;
+    border-bottom: 1px solid rgba(250,248,244,0.06);
+    margin-bottom: 0;
+  }
+
+  .artists-eyebrow {
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--titanium);
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .artists-headline {
+    font-family: var(--display);
+    font-size: clamp(2.8rem, 14vw, 5rem);
+    line-height: 0.88;
+    color: var(--ivory);
+  }
+
+  /* Horizontal scroll */
+  .artists-scroll {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 48px 24px;
+    gap: 3px;
+  }
+  .artists-scroll::-webkit-scrollbar { display: none; }
+
+  .artist-card {
+    flex: 0 0 72vw;
+    max-width: 280px;
+    position: relative;
+  }
+
+  .artist-portrait {
+    aspect-ratio: 3/4;
+    background: var(--concrete);
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 20px;
+  }
+
+  .artist-portrait .site-img {
+    transition: transform 0.8s ease;
+  }
+  .artist-card:hover .artist-portrait .site-img { transform: scale(1.04); }
+
+  .artist-num {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 2;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.7rem;
+    color: rgba(250,248,244,0.25);
+  }
+
+  .artist-info {}
+
+  .artist-name {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--ivory);
+    margin-bottom: 4px;
+  }
+
+  .artist-role {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--titanium);
+    margin-bottom: 12px;
+  }
+
+  .artist-spec {
+    font-size: 0.78rem;
+    line-height: 1.7;
+    color: rgba(250,248,244,0.35);
+  }
+
+  /* ── SECTION 7: THE SPACE ── */
+  #space {
+    background: var(--stone);
+    padding: 80px 0;
+    overflow: hidden;
+  }
+
+  .space-intro {
+    padding: 0 24px 48px;
+  }
+
+  .space-headline {
+    font-family: var(--display);
+    font-size: clamp(3rem, 16vw, 5.5rem);
+    line-height: 0.88;
+    color: var(--charcoal);
+    margin-bottom: 24px;
+  }
+
+  .space-desc {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--titanium);
+    line-height: 1.7;
+    max-width: 310px;
+  }
+
+  /* Architecture panels */
+  .space-panels {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .space-panel {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sp-full {
+    aspect-ratio: 16/9;
+  }
+  .sp-full .img-overlay {
+    background: linear-gradient(to top, rgba(14,12,10,0.5) 0%, transparent 45%);
+  }
+
+  .sp-half {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+  }
+
+  .sp-half .sp-sub {
+    aspect-ratio: 3/4;
+  }
+
+  .sp-sub .img-overlay {
+    background: linear-gradient(to top, rgba(14,12,10,0.35) 0%, transparent 50%);
+  }
+
+  .sp-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+  .sp-inner .site-img {
+    transition: transform 0.8s ease;
+  }
+  .space-panel:hover .sp-inner .site-img { transform: scale(1.02); }
+
+  .sp-caption {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    z-index: 2;
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(250,248,244,0.3);
+  }
+
+  /* Space attributes */
+  .space-attributes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--concrete);
+    border: 1px solid var(--concrete);
+    margin-top: 3px;
+  }
+
+  .space-attr {
+    background: var(--stone);
+    padding: 28px 20px;
+  }
+
+  .attr-label {
+    font-size: 0.58rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--titanium);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .attr-value {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--charcoal);
+    line-height: 1.3;
+  }
+
+  /* ── SECTION 8: LOCATION & BOOKING ── */
+  #visit {
+    background: var(--charcoal);
+    padding: 80px 0 0;
+  }
+
+  .visit-header {
+    padding: 0 24px 52px;
+    border-bottom: 1px solid rgba(250,248,244,0.07);
+    margin-bottom: 52px;
+  }
+
+  .visit-label {
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--titanium);
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .visit-headline {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 9vw, 3.5rem);
+    font-weight: 300;
+    color: var(--ivory);
+    line-height: 1.2;
+  }
+
+  .visit-headline em {
+    font-style: italic;
+    color: var(--titanium);
+  }
+
+  .visit-info {
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .info-block {}
+
+  .info-block-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(250,248,244,0.25);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .info-value {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    color: var(--ivory);
+    line-height: 1.5;
+  }
+
+  .hours-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 20px;
+    margin-top: 4px;
+  }
+
+  .hour-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: rgba(250,248,244,0.45);
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(250,248,244,0.05);
+  }
+
+  .hour-row span:last-child { color: rgba(250,248,244,0.7); }
+
+  /* CTA buttons — concierge style */
+  .visit-ctas {
+    padding: 52px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .concierge-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 24px;
+    background: rgba(250,248,244,0.04);
+    border: 1px solid rgba(250,248,244,0.07);
+    text-decoration: none;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .concierge-btn:hover { background: rgba(250,248,244,0.09); border-color: rgba(250,248,244,0.15); }
+
+  .concierge-btn-left {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .cb-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(250,248,244,0.3);
+  }
+
+  .cb-text {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: var(--ivory);
+  }
+
+  .cb-arrow {
+    width: 32px;
+    height: 32px;
+    border: 1px solid rgba(250,248,244,0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .cb-arrow svg {
+    width: 12px;
+    height: 12px;
+    stroke: var(--titanium);
+    fill: none;
+    transition: transform 0.3s;
+  }
+  .concierge-btn:hover .cb-arrow svg { transform: translate(2px, -2px); }
+
+  .visit-map {
+    height: 240px;
+    position: relative;
+    overflow: hidden;
+    background: var(--graphite);
+  }
+
+  .visit-map .img-overlay {
+    background: linear-gradient(to top, rgba(14,12,10,0.65) 0%, rgba(14,12,10,0.2) 100%);
+  }
+
+  .map-pin {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pin-dot {
+    width: 10px;
+    height: 10px;
+    background: var(--ivory);
+    border-radius: 50%;
+    position: relative;
+  }
+
+  .pin-dot::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 1px solid rgba(250,248,244,0.3);
+    animation: pinPulse 2s ease-out infinite;
+  }
+
+  @keyframes pinPulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(2.5); opacity: 0; }
+  }
+
+  .pin-stem {
+    width: 1px;
+    height: 20px;
+    background: var(--ivory);
+  }
+
+  .pin-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(250,248,244,0.4);
+    margin-top: 8px;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--charcoal);
+    border-top: 1px solid rgba(250,248,244,0.06);
+    padding: 40px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .footer-logo {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 1.1rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ivory);
+  }
+
+  .footer-tagline {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--titanium);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(250,248,244,0.3);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-links a:hover { color: var(--titanium); }
+
+  .footer-copy {
+    font-size: 0.62rem;
+    color: rgba(250,248,244,0.2);
+    letter-spacing: 0.1em;
+  }
+
+  /* ── REDUCED MOTION ── */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+
+  /* ── DESKTOP ENHANCEMENTS ── */
+  @media (min-width: 768px) {
+    nav { padding: 24px 40px; }
+    .hero-content { padding: 0 48px 72px; }
+    .hero-headline { font-size: clamp(5rem, 12vw, 9rem); }
+    .exp-header, .gallery-header, .why-intro, .trans-header,
+    .space-intro, .visit-header, .artists-header { padding-left: 40px; padding-right: 40px; }
+    .exp-pillars, .artists-scroll { padding: 0 40px 60px; }
+    .gallery-bento { grid-template-columns: 1fr 1fr; }
+    .visit-info, .visit-ctas { padding-left: 40px; padding-right: 40px; }
+    .exp-split { grid-template-columns: 1fr 1fr; }
+    .exp-text-block { padding: 60px 40px; }
+    .reasons .reason-content { padding-left: 80px; }
+    .why-statement { padding: 80px 40px; }
+    footer { padding: 48px 40px; flex-direction: row; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 32px; }
+    .ba-container { max-width: 420px; margin: 0 auto 24px; }
+    .space-panels { padding: 0; }
+    .gallery-bento { padding: 0; }
+    .exp-pillars { gap: 3px; }
+    .artist-card { max-width: 320px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#hero" class="nav-logo">Success</a>
+  <a href="https://wa.me/971528737000" class="nav-book" target="_blank" rel="noopener">Book Now</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg">
+    <img
+      src="public/assets/images/458243251_17854572216256305_3429423906153086280_n.jpg"
+      alt="Success Barbershop interior — barbers at work in Dubai Marina"
+      class="site-img"
+      width="1200"
+      height="800"
+    >
+    <div class="hero-lines"></div>
+    <div class="hero-bloom"></div>
+  </div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Dubai Marina · Est. 2024</p>
+    <h1 class="hero-headline">
+      Success
+      <em>Barbershop</em>
+    </h1>
+    <p class="hero-sub">Dubai's first international Latin-inspired grooming destination.</p>
+    <div class="hero-ctas">
+      <a href="https://wa.me/971528737000" class="btn-primary" target="_blank" rel="noopener">Book Appointment</a>
+      <a href="#experience" class="btn-ghost">Explore</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Precision Fades</span>
+    <span>Latin Energy</span>
+    <span>Dubai Marina</span>
+    <span>International Standards</span>
+    <span>Expert Barbers</span>
+    <span>Skin Fades</span>
+    <span>Beard Craftsmanship</span>
+    <span>Perm Specialists</span>
+    <span>Precision Fades</span>
+    <span>Latin Energy</span>
+    <span>Dubai Marina</span>
+    <span>International Standards</span>
+    <span>Expert Barbers</span>
+    <span>Skin Fades</span>
+    <span>Beard Craftsmanship</span>
+    <span>Perm Specialists</span>
+  </div>
+</div>
+
+<!-- SECTION 2: THE SUCCESS EXPERIENCE -->
+<section id="experience">
+  <div class="exp-header">
+    <span class="section-label reveal">The Experience</span>
+    <h2 class="exp-headline reveal reveal-delay-1">
+      Where precision<br>
+      meets <em>culture.</em>
+    </h2>
+    <p class="exp-body-text reveal reveal-delay-2">
+      We are not a standard barbershop. Success was built as Dubai's meeting point of Latin grooming tradition and international luxury — a space where every visit is a ritual.
+    </p>
+  </div>
+
+  <div class="exp-pillars">
+    <div class="pillar">
+      <span class="pillar-number">I</span>
+      <h3 class="pillar-title">International<br>Standards</h3>
+      <p class="pillar-desc">Every technique is rooted in global grooming excellence — refined in Latin America, perfected for Dubai's most discerning clientele.</p>
+      <div class="pillar-bar"></div>
+    </div>
+    <div class="pillar">
+      <span class="pillar-number">II</span>
+      <h3 class="pillar-title">Latin<br>Energy</h3>
+      <p class="pillar-desc">Our culture is our craft. The warmth, passion, and attention to detail of Latin barbering is woven into every appointment.</p>
+      <div class="pillar-bar"></div>
+    </div>
+    <div class="pillar">
+      <span class="pillar-number">III</span>
+      <h3 class="pillar-title">Precision<br>Craftsmanship</h3>
+      <p class="pillar-desc">Lines so clean, fades so seamless — we treat every detail as a signature. No rush. No compromise. Ever.</p>
+      <div class="pillar-bar"></div>
+    </div>
+    <div class="pillar">
+      <span class="pillar-number">IV</span>
+      <h3 class="pillar-title">Exclusive<br>Environment</h3>
+      <p class="pillar-desc">Designed as a destination. The space itself communicates that you are somewhere rare — a boutique experience in the heart of Dubai Marina.</p>
+      <div class="pillar-bar"></div>
+    </div>
+  </div>
+
+  <div class="exp-split">
+    <div class="exp-visual reveal">
+      <img
+        src="public/assets/images/503641933_1025298203117663_175706675290151672_n.jpg"
+        alt="Straight razor beard grooming at Success Barbershop"
+        class="site-img"
+        width="800"
+        height="600"
+        loading="lazy"
+      >
+      <div class="img-overlay"></div>
+    </div>
+    <div class="exp-text-block reveal reveal-delay-1">
+      <blockquote class="exp-quote">
+        "Every man who walks in here deserves to walk out transformed."
+      </blockquote>
+      <p class="exp-detail">
+        From the moment you enter, the atmosphere signals something different. Premium materials. Measured light. The quiet confidence of a team that lives for their craft.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: VISUAL GALLERY -->
+<section id="gallery">
+  <div class="gallery-header">
+    <h2 class="gallery-headline reveal">
+      The<br>Craft
+    </h2>
+    <span class="gallery-count reveal">Precision, always</span>
+  </div>
+
+  <div class="gallery-bento reveal">
+    <div class="g-cell g1">
+      <div class="g-cell-inner">
+        <img
+          src="public/assets/images/458243251_17854572216256305_3429423906153086280_n.jpg"
+          alt="Success Barbershop studio floor — Dubai Marina"
+          class="site-img"
+          width="1200"
+          height="675"
+          loading="lazy"
+        >
+        <span class="g-label">Dubai Marina · The Studio</span>
+      </div>
+    </div>
+
+    <div class="g-cell g2">
+      <div class="g-cell-inner">
+        <img
+          src="public/assets/images/469105465_17867251731256305_1208451425520129091_n.jpg"
+          alt="Precision fade detail — clipper work at Success Barbershop"
+          class="site-img"
+          width="600"
+          height="800"
+          loading="lazy"
+        >
+        <span class="g-label">Fade Detail</span>
+      </div>
+    </div>
+
+    <div class="g-cell g3">
+      <div class="g-cell-inner">
+        <img
+          src="public/assets/images/500895234_2122456294928037_6686951911519969729_n.jpg"
+          alt="Satisfied client at Success Barbershop Dubai"
+          class="site-img"
+          width="600"
+          height="800"
+          loading="lazy"
+        >
+        <div class="img-overlay"></div>
+        <p class="g-quote">"Crafted for the image-conscious man of Dubai."</p>
+      </div>
+    </div>
+
+    <div class="g-cell g4">
+      <div class="g-cell-inner">
+        <img
+          src="public/assets/images/474048620_9552685108109550_6910904959628439103_n.jpg"
+          alt="Full grooming experience at Success Barbershop"
+          class="site-img"
+          width="1200"
+          height="800"
+          loading="lazy"
+        >
+        <div class="img-overlay"></div>
+        <span class="g-label">The Artists</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="gallery-cta reveal">
+    <div class="cta-line"></div>
+    <a href="https://www.instagram.com/successbarberdxb/" target="_blank" rel="noopener">Follow @successbarberdxb</a>
+    <div class="cta-line"></div>
+  </div>
+</section>
+
+<!-- SECTION 4: WHY MEN CHOOSE SUCCESS -->
+<section id="why">
+  <div class="why-intro">
+    <h2 class="why-headline reveal">
+      Why<br>They<br>Return
+    </h2>
+    <p class="why-intro-text reveal reveal-delay-1">
+      Once you experience the standard, everything else feels ordinary.
+    </p>
+  </div>
+
+  <div class="reasons">
+    <div class="reason open">
+      <div class="reason-header" onclick="toggleReason(this)">
+        <div class="reason-left">
+          <span class="reason-num">i</span>
+          <h3 class="reason-title">Confidence in Every Cut</h3>
+        </div>
+        <div class="reason-icon"></div>
+      </div>
+      <div class="reason-body">
+        <p class="reason-content">A great haircut is not about hair — it is about how you carry yourself after. Our barbers understand the relationship between image and self-assurance, and they craft accordingly.</p>
+      </div>
+    </div>
+
+    <div class="reason">
+      <div class="reason-header" onclick="toggleReason(this)">
+        <div class="reason-left">
+          <span class="reason-num">ii</span>
+          <h3 class="reason-title">Obsessive Attention to Detail</h3>
+        </div>
+        <div class="reason-icon"></div>
+      </div>
+      <div class="reason-body">
+        <p class="reason-content">The hairline. The taper. The edge. Every millimetre is considered. We do not rush, and we do not cut corners — in any sense.</p>
+      </div>
+    </div>
+
+    <div class="reason">
+      <div class="reason-header" onclick="toggleReason(this)">
+        <div class="reason-left">
+          <span class="reason-num">iii</span>
+          <h3 class="reason-title">Consistent Results</h3>
+        </div>
+        <div class="reason-icon"></div>
+      </div>
+      <div class="reason-body">
+        <p class="reason-content">You should leave looking exactly as you envisioned, every single time. Our barbers study your hair, your face, your style — and they remember. That is what consistency looks like.</p>
+      </div>
+    </div>
+
+    <div class="reason">
+      <div class="reason-header" onclick="toggleReason(this)">
+        <div class="reason-left">
+          <span class="reason-num">iv</span>
+          <h3 class="reason-title">A Luxury Experience</h3>
+        </div>
+        <div class="reason-icon"></div>
+      </div>
+      <div class="reason-body">
+        <p class="reason-content">From the moment you enter to the moment you leave, every element of the visit is designed to feel premium — the space, the service, the product, the conversation.</p>
+      </div>
+    </div>
+
+    <div class="reason">
+      <div class="reason-header" onclick="toggleReason(this)">
+        <div class="reason-left">
+          <span class="reason-num">v</span>
+          <h3 class="reason-title">Specialists, Not Just Barbers</h3>
+        </div>
+        <div class="reason-icon"></div>
+      </div>
+      <div class="reason-body">
+        <p class="reason-content">Curl perms, skin fades, beard sculpting, keratin treatments — our team is trained in techniques most Dubai barbershops simply do not offer. This is the difference between a haircut and a transformation.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="why-statement reveal">
+    <p class="statement-text">
+      "Dubai's most image-conscious men<br>do not settle for <em>ordinary.</em>"
+    </p>
+  </div>
+</section>
+
+<!-- SECTION 5: TRANSFORMATIONS -->
+<section id="transformations">
+  <div class="trans-header">
+    <h2 class="trans-headline reveal">Trans&shy;formations</h2>
+    <p class="trans-sub reveal reveal-delay-1">Drag to reveal</p>
+  </div>
+
+  <div class="ba-container" id="baSlider">
+    <div class="ba-before">
+      <div class="ba-before-scene">
+        <img
+          id="baBeforeImg"
+          src="public/assets/images/500101694_1843388119848740_2928094562129408245_n.jpg"
+          alt="Haircut in progress at Success Barbershop"
+          class="site-img"
+          width="600"
+          height="750"
+        >
+      </div>
+    </div>
+    <div class="ba-after" id="baAfter">
+      <div class="ba-after-scene">
+        <img
+          id="baAfterImg"
+          src="public/assets/images/482954324_17879137932256305_8699392689622251567_n.jpg"
+          alt="Finished precision fade and beard line-up"
+          class="site-img"
+          width="600"
+          height="750"
+        >
+      </div>
+    </div>
+    <div class="ba-divider" id="baDivider"></div>
+    <div class="ba-handle" id="baHandle">
+      <svg viewBox="0 0 16 16" fill="none" stroke-width="1.5">
+        <path d="M4 8h8M4 8l2.5-2.5M4 8l2.5 2.5M12 8l-2.5-2.5M12 8l-2.5 2.5" stroke="currentColor"/>
+      </svg>
+    </div>
+    <div class="ba-labels">
+      <span class="ba-label">Before</span>
+      <span class="ba-label">After</span>
+    </div>
+  </div>
+
+  <div class="trans-nav">
+    <button class="t-dot active" onclick="setTransform(0, this)" aria-label="Transformation 1"></button>
+    <button class="t-dot" onclick="setTransform(1, this)" aria-label="Transformation 2"></button>
+    <button class="t-dot" onclick="setTransform(2, this)" aria-label="Transformation 3"></button>
+    <button class="t-dot" onclick="setTransform(3, this)" aria-label="Transformation 4"></button>
+  </div>
+</section>
+
+<!-- SECTION 6: MEET THE ARTISTS -->
+<section id="artists">
+  <div class="artists-header">
+    <span class="artists-eyebrow reveal">The Team</span>
+    <h2 class="artists-headline reveal reveal-delay-1">
+      The<br>Artists
+    </h2>
+  </div>
+
+  <div class="artists-scroll">
+    <div class="artist-card">
+      <div class="artist-portrait">
+        <img
+          src="public/assets/images/503641933_1025298203117663_175706675290151672_n.jpg"
+          alt="Jovany — beard and curl specialist at Success Barbershop"
+          class="site-img"
+          width="400"
+          height="533"
+          loading="lazy"
+        >
+        <span class="artist-num">01</span>
+      </div>
+      <div class="artist-info">
+        <h3 class="artist-name">Jovany</h3>
+        <p class="artist-role">Lead Artist · Curl Specialist</p>
+        <p class="artist-spec">Dubai's foremost curl perm specialist. Jovany transforms natural texture into statement — trusted by the city's most style-conscious clients.</p>
+      </div>
+    </div>
+
+    <div class="artist-card">
+      <div class="artist-portrait">
+        <img
+          src="public/assets/images/500101694_1843388119848740_2928094562129408245_n.jpg"
+          alt="Koro — fade architect at Success Barbershop"
+          class="site-img"
+          width="400"
+          height="533"
+          loading="lazy"
+        >
+        <span class="artist-num">02</span>
+      </div>
+      <div class="artist-info">
+        <h3 class="artist-name">Koro</h3>
+        <p class="artist-role">Senior Barber · Fade Architect</p>
+        <p class="artist-spec">Precision fade specialist with a signature eye for symmetry. Known for exceptional client hospitality and meticulous edge work.</p>
+      </div>
+    </div>
+
+    <div class="artist-card">
+      <div class="artist-portrait">
+        <img
+          src="public/assets/images/458243251_17854572216256305_3429423906153086280_n.jpg"
+          alt="The Success Barbershop team at work"
+          class="site-img"
+          width="400"
+          height="533"
+          loading="lazy"
+        >
+        <span class="artist-num">03</span>
+      </div>
+      <div class="artist-info">
+        <h3 class="artist-name">The Team</h3>
+        <p class="artist-role">All Barbers · Full Service</p>
+        <p class="artist-spec">Each member of the Success team brings international training and a shared commitment to craftsmanship. Every artist, every time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: THE SPACE -->
+<section id="space">
+  <div class="space-intro">
+    <h2 class="space-headline reveal">The<br>Space</h2>
+    <p class="space-desc reveal reveal-delay-1">
+      Designed as a destination. Wharf Tower 1, Dubai Marina — a location as refined as the experience within.
+    </p>
+  </div>
+
+  <div class="space-panels reveal">
+    <div class="space-panel sp-full">
+      <div class="sp-inner">
+        <img
+          src="public/assets/images/458243251_17854572216256305_3429423906153086280_n.jpg"
+          alt="Success Barbershop studio — four private chairs, Dubai Marina"
+          class="site-img"
+          width="1200"
+          height="675"
+          loading="lazy"
+        >
+        <div class="img-overlay"></div>
+      </div>
+      <span class="sp-caption">The Studio — Dubai Marina</span>
+    </div>
+
+    <div class="sp-half">
+      <div class="sp-sub space-panel">
+        <div class="sp-inner">
+          <img
+            src="public/assets/images/467426730_17865187275256305_6552006990329879324_n.jpg"
+            alt="Premium grooming products at Success Barbershop"
+            class="site-img"
+            width="600"
+            height="800"
+            loading="lazy"
+          >
+          <div class="img-overlay"></div>
+        </div>
+        <span class="sp-caption">Products</span>
+      </div>
+      <div class="sp-sub space-panel">
+        <div class="sp-inner">
+          <img
+            src="public/assets/images/469105465_17867251731256305_1208451425520129091_n.jpg"
+            alt="Precision clipper work — Success Barbershop craft"
+            class="site-img"
+            width="600"
+            height="800"
+            loading="lazy"
+          >
+          <div class="img-overlay"></div>
+        </div>
+        <span class="sp-caption">Craft</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="space-attributes reveal">
+    <div class="space-attr">
+      <span class="attr-label">Location</span>
+      <div class="attr-value">Dubai Marina<br>Wharf Tower 1</div>
+    </div>
+    <div class="space-attr">
+      <span class="attr-label">Atmosphere</span>
+      <div class="attr-value">Boutique<br>Minimal</div>
+    </div>
+    <div class="space-attr">
+      <span class="attr-label">Stations</span>
+      <div class="attr-value">4 Private<br>Chairs</div>
+    </div>
+    <div class="space-attr">
+      <span class="attr-label">Open Daily</span>
+      <div class="attr-value">9:00 — 21:00</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 8: LOCATION & BOOKING -->
+<section id="visit">
+  <div class="visit-header">
+    <span class="visit-label reveal">Visit Us</span>
+    <h2 class="visit-headline reveal reveal-delay-1">
+      Come<br>find<br><em>your look.</em>
+    </h2>
+  </div>
+
+  <div class="visit-info">
+    <div class="info-block reveal">
+      <span class="info-block-label">Address</span>
+      <p class="info-value">
+        Wharf Tower 1, Shop 3<br>
+        Dubai Marina<br>
+        Dubai, UAE
+      </p>
+    </div>
+
+    <div class="info-block reveal reveal-delay-1">
+      <span class="info-block-label">Hours</span>
+      <div class="hours-grid">
+        <div class="hour-row"><span>Mon – Fri</span><span>9:00 – 21:00</span></div>
+        <div class="hour-row"><span>Saturday</span><span>9:00 – 21:00</span></div>
+        <div class="hour-row"><span>Sunday</span><span>9:00 – 21:00</span></div>
+      </div>
+    </div>
+
+    <div class="info-block reveal reveal-delay-2">
+      <span class="info-block-label">Contact</span>
+      <p class="info-value">+971 52 873 7000</p>
+    </div>
+  </div>
+
+  <div class="visit-ctas">
+    <a href="https://wa.me/971528737000" class="concierge-btn" target="_blank" rel="noopener">
+      <div class="concierge-btn-left">
+        <span class="cb-label">WhatsApp</span>
+        <span class="cb-text">Book via WhatsApp</span>
+      </div>
+      <div class="cb-arrow">
+        <svg viewBox="0 0 12 12" stroke-width="1.2">
+          <path d="M2 10L10 2M10 2H4M10 2v6"/>
+        </svg>
+      </div>
+    </a>
+
+    <a href="tel:+971528737000" class="concierge-btn">
+      <div class="concierge-btn-left">
+        <span class="cb-label">Phone</span>
+        <span class="cb-text">Call the Studio</span>
+      </div>
+      <div class="cb-arrow">
+        <svg viewBox="0 0 12 12" stroke-width="1.2">
+          <path d="M2 10L10 2M10 2H4M10 2v6"/>
+        </svg>
+      </div>
+    </a>
+
+    <a href="https://maps.google.com/?q=Wharf+Tower+1+Shop+3+Dubai+Marina+Dubai" class="concierge-btn" target="_blank" rel="noopener">
+      <div class="concierge-btn-left">
+        <span class="cb-label">Directions</span>
+        <span class="cb-text">Get Directions</span>
+      </div>
+      <div class="cb-arrow">
+        <svg viewBox="0 0 12 12" stroke-width="1.2">
+          <path d="M2 10L10 2M10 2H4M10 2v6"/>
+        </svg>
+      </div>
+    </a>
+
+    <a href="https://www.instagram.com/successbarberdxb/" class="concierge-btn" target="_blank" rel="noopener">
+      <div class="concierge-btn-left">
+        <span class="cb-label">Instagram</span>
+        <span class="cb-text">@successbarberdxb</span>
+      </div>
+      <div class="cb-arrow">
+        <svg viewBox="0 0 12 12" stroke-width="1.2">
+          <path d="M2 10L10 2M10 2H4M10 2v6"/>
+        </svg>
+      </div>
+    </a>
+  </div>
+
+  <div class="visit-map">
+    <img
+      src="public/assets/images/503901407_1430265668149237_5824563752021327185_n.jpg"
+      alt="Success Barbershop storefront — Wharf Tower 1, Dubai Marina"
+      class="site-img"
+      width="1200"
+      height="600"
+      loading="lazy"
+    >
+    <div class="img-overlay"></div>
+    <div class="map-pin">
+      <div class="pin-dot"></div>
+      <div class="pin-stem"></div>
+      <p class="pin-label">Success Barbershop<br>Dubai Marina</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">Success Barbershop</div>
+    <p class="footer-tagline">Dubai's First Latin-Inspired Grooming Destination</p>
+  </div>
+  <div class="footer-links">
+    <a href="#experience">Experience</a>
+    <a href="#artists">Artists</a>
+    <a href="#space">The Space</a>
+    <a href="#visit">Visit</a>
+    <a href="https://www.instagram.com/successbarberdxb/" target="_blank">Instagram</a>
+  </div>
+  <p class="footer-copy">© 2025 Success Barbershop — Dubai Marina, UAE</p>
+</footer>
+
+<script>
+  // ── NAV SCROLL STATE ──
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  // ── INTERSECTION OBSERVER: REVEALS ──
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+
+  // ── ACCORDION ──
+  function toggleReason(header) {
+    const reason = header.parentElement;
+    const isOpen = reason.classList.contains('open');
+    document.querySelectorAll('.reason.open').forEach(r => r.classList.remove('open'));
+    if (!isOpen) reason.classList.add('open');
+  }
+
+  // ── BEFORE / AFTER SLIDER ──
+  const slider = document.getElementById('baSlider');
+  const baAfter = document.getElementById('baAfter');
+  const baDivider = document.getElementById('baDivider');
+  const baHandle = document.getElementById('baHandle');
+  let dragging = false;
+
+  function setSliderPos(pct) {
+    pct = Math.max(5, Math.min(95, pct));
+    baAfter.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
+    baDivider.style.left = pct + '%';
+    baHandle.style.left = pct + '%';
+  }
+
+  setSliderPos(50);
+
+  function getPos(e) {
+    const rect = slider.getBoundingClientRect();
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    return ((clientX - rect.left) / rect.width) * 100;
+  }
+
+  slider.addEventListener('mousedown', (e) => { dragging = true; setSliderPos(getPos(e)); });
+  slider.addEventListener('touchstart', (e) => { dragging = true; setSliderPos(getPos(e)); }, { passive: true });
+  window.addEventListener('mousemove', (e) => { if (dragging) setSliderPos(getPos(e)); });
+  window.addEventListener('touchmove', (e) => { if (dragging) setSliderPos(getPos(e)); }, { passive: true });
+  window.addEventListener('mouseup', () => { dragging = false; });
+  window.addEventListener('touchend', () => { dragging = false; });
+
+  // ── TRANSFORMATION DOTS ──
+  const IMG = 'public/assets/images/';
+  const transforms = [
+    {
+      before: IMG + '500101694_1843388119848740_2928094562129408245_n.jpg',
+      after: IMG + '482954324_17879137932256305_8699392689622251567_n.jpg',
+      beforeAlt: 'Fade in progress at Success Barbershop',
+      afterAlt: 'Finished precision fade and beard line-up'
+    },
+    {
+      before: IMG + '469105465_17867251731256305_1208451425520129091_n.jpg',
+      after: IMG + '470286162_17868517701256305_963057592906924899_n.jpg',
+      beforeAlt: 'Clipper work in progress',
+      afterAlt: 'Finished taper fade with textured top'
+    },
+    {
+      before: IMG + '467338718_17865187407256305_3563535980039063271_n.jpg',
+      after: IMG + '476905952_17876009430256305_8587524467421633037_n.jpg',
+      beforeAlt: 'Hair styling in progress',
+      afterAlt: 'Finished mid-fade with styled waves'
+    },
+    {
+      before: IMG + '502973443_3644911255641463_6617126882942188463_n.jpg',
+      after: IMG + '503009987_912340634340550_5961607925705708777_n.jpg',
+      beforeAlt: 'Skin fade with design lines',
+      afterAlt: 'Platinum buzz cut transformation'
+    }
+  ];
+
+  const baBeforeImg = document.getElementById('baBeforeImg');
+  const baAfterImg = document.getElementById('baAfterImg');
+
+  function setTransform(idx, btn) {
+    document.querySelectorAll('.t-dot').forEach(d => d.classList.remove('active'));
+    btn.classList.add('active');
+    const positions = [50, 35, 65, 45];
+    setSliderPos(positions[idx]);
+    const t = transforms[idx];
+    baBeforeImg.src = t.before;
+    baBeforeImg.alt = t.beforeAlt;
+    baAfterImg.src = t.after;
+    baAfterImg.alt = t.afterAlt;
+  }
+
+  // ── SMOOTH PARALLAX ON HERO BLOOM ──
+  const bloom = document.querySelector('.hero-bloom');
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (bloom && y < window.innerHeight) {
+      bloom.style.transform = `translateY(${y * 0.15}px)`;
+    }
+  }, { passive: true });
+</script>
+</body>
+</html>
