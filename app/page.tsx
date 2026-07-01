@@ -1,4 +1,5 @@
 import { SectionArtists } from "@/components/sections/section-artists/section-artists";
+import { SectionBrand } from "@/components/sections/section-brand/section-brand";
 import { SectionExperience } from "@/components/sections/section-experience/section-experience";
 import { SectionFooter } from "@/components/sections/section-footer/section-footer";
 import { SectionGallery } from "@/components/sections/section-gallery/section-gallery";
@@ -21,6 +22,7 @@ const Home = (): React.JSX.Element => {
         <SectionServices />
         <SectionGallery />
         <SectionArtists />
+        <SectionBrand />
         <SectionSpace />
         <SectionVisit />
       </main>

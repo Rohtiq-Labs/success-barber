@@ -6,7 +6,7 @@ import { SiteImage } from "@/components/ui/site-image";
 export const SectionArtists = (): React.JSX.Element => {
   return (
     <section id="artists" className="overflow-hidden bg-charcoal py-20">
-      <div className="mb-0 border-b border-ivory/6 px-6 pb-12 md:px-10">
+      <div className="mx-auto mb-0 max-w-6xl border-b border-ivory/6 px-6 pb-12 md:px-10">
         <Reveal>
           <span className="mb-4 block text-[0.62rem] font-medium uppercase tracking-[0.35em] text-titanium">
             {en.artists.eyebrow}
@@ -21,19 +21,19 @@ export const SectionArtists = (): React.JSX.Element => {
         </Reveal>
       </div>
 
-      <div className="flex gap-[3px] overflow-x-auto px-6 py-12 [scrollbar-width:none] md:px-10 md:pb-15 [&::-webkit-scrollbar]:hidden">
+      <div className="mx-auto flex max-w-6xl gap-[3px] overflow-x-auto px-6 py-12 [scrollbar-width:none] md:grid md:grid-cols-3 md:overflow-visible md:px-10 md:pb-15 [&::-webkit-scrollbar]:hidden">
         {en.artists.members.map((artist, index) => (
           <Reveal
             key={artist.num}
             delay={(index % 4) as 0 | 1 | 2 | 3}
-            className="w-[72vw] max-w-[280px] shrink-0 md:max-w-xs"
+            className="w-[72vw] max-w-[280px] shrink-0 md:h-full md:w-auto md:max-w-none md:shrink"
           >
             <article className="group h-full">
-            <div className="relative mb-5 aspect-3/4 overflow-hidden bg-concrete">
+            <div className="relative mb-5 aspect-3/4 overflow-hidden bg-concrete md:aspect-[4/5]">
               <SiteImage
                 src={images.artists[index]}
                 alt={artist.alt}
-                sizes="280px"
+                sizes="(min-width: 768px) 384px, 72vw"
                 className="artist-img object-cover object-center"
               />
               <span className="absolute top-4 right-4 z-2 font-serif text-[0.7rem] italic text-ivory/25">

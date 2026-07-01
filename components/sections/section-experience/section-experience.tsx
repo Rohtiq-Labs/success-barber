@@ -28,12 +28,12 @@ export const SectionExperience = (): React.JSX.Element => {
         </Reveal>
       </div>
 
-      <div className="flex gap-0.5 overflow-x-auto px-6 pb-15 [scrollbar-width:none] md:gap-[3px] md:px-10 md:pb-15 [&::-webkit-scrollbar]:hidden">
+      <div className="flex gap-0.5 overflow-x-auto px-6 pb-15 [scrollbar-width:none] md:grid md:grid-cols-4 md:gap-[3px] md:overflow-visible md:px-10 md:pb-15 [&::-webkit-scrollbar]:hidden">
         {en.experience.pillars.map((pillar, index) => (
           <Reveal
             key={pillar.number}
             delay={(index % 4) as 0 | 1 | 2 | 3}
-            className="w-[72vw] max-w-[300px] shrink-0"
+            className="w-[72vw] max-w-[300px] shrink-0 md:h-full md:w-auto md:max-w-none md:shrink"
           >
             <div className="pillar group relative h-full border border-ivory/7 bg-ivory/4 p-9 transition-colors hover:bg-ivory/7">
             <span className="mb-6 block font-display text-[5rem] leading-none text-titanium/15">
@@ -53,14 +53,14 @@ export const SectionExperience = (): React.JSX.Element => {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2">
-        <Reveal className="relative aspect-4/3 overflow-hidden">
+      <div className="grid grid-cols-1 md:min-h-[clamp(22rem,52vh,42rem)] md:grid-cols-2">
+        <Reveal className="relative aspect-4/3 overflow-hidden md:aspect-auto md:min-h-[clamp(22rem,52vh,42rem)]">
           <LuxuryImageFrame className="absolute inset-0">
             <SiteImage
               src={images.experience}
               alt={en.experience.imageAlt}
               sizes="(min-width: 768px) 50vw, 100vw"
-              className="experience-img object-cover object-[center_35%] md:object-center"
+              className="experience-img object-cover object-center"
             />
           </LuxuryImageFrame>
           <div
@@ -68,13 +68,18 @@ export const SectionExperience = (): React.JSX.Element => {
             aria-hidden="true"
           />
         </Reveal>
-        <Reveal delay={1} className="bg-stone px-6 py-12 md:px-10 md:py-15">
-          <blockquote className="mb-6 border-l-2 border-titanium pl-5 font-serif text-[1.6rem] font-light leading-snug text-charcoal">
-            {en.experience.quote}
-          </blockquote>
-          <p className="text-[0.82rem] leading-[1.8] text-titanium">
-            {en.experience.detail}
-          </p>
+        <Reveal
+          delay={1}
+          className="flex flex-col justify-center bg-stone px-6 py-12 md:min-h-[clamp(22rem,52vh,42rem)] md:px-12 md:py-16 lg:px-16"
+        >
+          <div className="max-w-md">
+            <blockquote className="mb-6 border-l-2 border-titanium pl-5 font-serif text-[1.6rem] font-light italic leading-snug text-charcoal md:text-[clamp(1.5rem,2.1vw,2rem)]">
+              {en.experience.quote}
+            </blockquote>
+            <p className="text-[0.82rem] leading-[1.8] text-titanium md:text-[0.88rem]">
+              {en.experience.detail}
+            </p>
+          </div>
         </Reveal>
       </div>
     </section>

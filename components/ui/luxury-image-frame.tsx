@@ -39,9 +39,10 @@ export const LuxuryImageFrame = ({
         Math.min(1, 1 - (rect.top - viewport * 0.15) / (viewport * 0.85)),
       );
       const parallaxY = (rect.top + rect.height * 0.5 - viewport * 0.5) * -0.03;
-      const scale = 1 + progress * 0.05;
+      const scale = 1.1 + progress * 0.04;
 
       media.style.transform = `translate3d(0, ${parallaxY}px, 0) scale(${scale})`;
+      media.style.transformOrigin = "center center";
     };
 
     const onScroll = (): void => {

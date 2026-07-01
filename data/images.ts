@@ -1,15 +1,19 @@
 const IMG = "/assets/images";
+const NEW_IMG = "/assets/new-images";
 const CRAFT = `${IMG}/craft`;
 const VID = "/assets/videos";
 
+const newImage = (filename: string): string =>
+  `${NEW_IMG}/${encodeURIComponent(filename)}`;
+
 export const images = {
   hero: `${IMG}/458243251_17854572216256305_3429423906153086280_n.jpg`,
-  experience: `${IMG}/exterior.jpg`,
+  experience: `${NEW_IMG}/shod-building.jpeg`,
   gallery: [
-    `${CRAFT}/470913198_17869193235256305_1580340813063235975_n.jpg`,
-    `${CRAFT}/470286162_17868517701256305_963057592906924899_n.jpg`,
-    `${CRAFT}/469069818_17866872375256305_6640745444586334775_n.jpg`,
-    `${CRAFT}/503009987_912340634340550_5961607925705708777_n.jpg`,
+    newImage("Still 2026-07-01 014019_1.73.1.jpg.jpeg"),
+    newImage("Still 2026-07-01 014003_1.39.1.jpg.jpeg"),
+    newImage("Still 2026-07-01 014041_1.106.1.jpg.jpeg"),
+    `${NEW_IMG}/interioir.jpeg`,
   ],
   artists: [
     `${IMG}/488316381_17882381796256305_7693056712276859620_n.jpg`,
@@ -26,6 +30,7 @@ export const images = {
 export const videos = {
   hero: `${VID}/hero-background.mp4`,
   space: `${VID}/video-02.mp4`,
+  brand: `${VID}/cloths.mp4`,
 } as const;
 
 export const WHATSAPP_URL = "https://wa.me/971528737000";

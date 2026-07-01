@@ -7,7 +7,7 @@ import { SiteImage } from "@/components/ui/site-image";
 export const SectionGallery = (): React.JSX.Element => {
   return (
     <section id="gallery" className="bg-stone py-20">
-      <div className="flex items-end justify-between px-6 pb-12 md:px-10">
+      <div className="mx-auto flex max-w-6xl items-end justify-between px-6 pb-12 md:px-10">
         <Reveal>
           <h2 className="font-display text-[clamp(3rem,16vw,5.5rem)] leading-[0.9] text-charcoal">
             {en.gallery.headline}
@@ -22,27 +22,27 @@ export const SectionGallery = (): React.JSX.Element => {
         </Reveal>
       </div>
 
-      <Reveal className="grid grid-cols-2 gap-[3px] px-[3px] md:px-0">
-        <div className="group relative col-span-2 aspect-video overflow-hidden bg-concrete">
-          <LuxuryImageFrame className="h-full w-full">
+      <Reveal className="mx-auto grid max-w-6xl grid-cols-2 gap-[3px] px-[3px] md:px-10">
+        <div className="relative col-span-2 overflow-hidden bg-charcoal">
+          <div className="relative aspect-[3/4] w-full md:aspect-[16/10]">
             <SiteImage
               src={images.gallery[0]}
               alt={en.gallery.cells[0].alt}
-              sizes="100vw"
-              className="gallery-img object-cover object-center"
+              sizes="(min-width: 768px) 1152px, 100vw"
+              className="object-contain object-center md:object-cover md:object-[62%_center]"
             />
-          </LuxuryImageFrame>
+          </div>
           <span className="absolute bottom-3 left-4 z-2 text-[0.6rem] uppercase tracking-[0.25em] text-ivory/75">
             {en.gallery.cells[0].label}
           </span>
         </div>
 
-        <div className="group relative aspect-3/4 overflow-hidden bg-concrete">
+        <div className="group relative aspect-3/4 overflow-hidden bg-concrete md:aspect-[4/5]">
           <LuxuryImageFrame className="h-full w-full">
             <SiteImage
               src={images.gallery[1]}
               alt={en.gallery.cells[1].alt}
-              sizes="50vw"
+              sizes="(min-width: 768px) 576px, 50vw"
               className="gallery-img object-cover object-center"
             />
           </LuxuryImageFrame>
@@ -51,12 +51,12 @@ export const SectionGallery = (): React.JSX.Element => {
           </span>
         </div>
 
-        <div className="group relative aspect-3/4 overflow-hidden bg-concrete">
+        <div className="group relative aspect-3/4 overflow-hidden bg-concrete md:aspect-[4/5]">
           <LuxuryImageFrame className="absolute inset-0">
             <SiteImage
               src={images.gallery[2]}
               alt={en.gallery.cells[2].alt}
-              sizes="50vw"
+              sizes="(min-width: 768px) 576px, 50vw"
               className="gallery-img object-cover object-center"
             />
           </LuxuryImageFrame>
@@ -69,12 +69,12 @@ export const SectionGallery = (): React.JSX.Element => {
           </p>
         </div>
 
-        <div className="group relative col-span-2 aspect-3/2 overflow-hidden bg-concrete">
+        <div className="group relative col-span-2 aspect-3/2 overflow-hidden bg-concrete md:aspect-[21/9]">
           <LuxuryImageFrame className="h-full w-full">
             <SiteImage
               src={images.gallery[3]}
               alt={en.gallery.cells[3].alt}
-              sizes="100vw"
+              sizes="(min-width: 768px) 1152px, 100vw"
               className="gallery-img object-cover object-center"
             />
           </LuxuryImageFrame>
@@ -88,7 +88,7 @@ export const SectionGallery = (): React.JSX.Element => {
         </div>
       </Reveal>
 
-      <Reveal className="mx-6 mt-10 flex items-center gap-4 md:mx-10">
+      <Reveal className="mx-auto mt-10 flex max-w-6xl items-center gap-4 px-6 md:px-10">
         <div className="h-px flex-1 bg-concrete" />
         <a
           href="https://www.instagram.com/successbarberdxb/"

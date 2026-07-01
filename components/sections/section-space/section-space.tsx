@@ -8,7 +8,7 @@ import { SpaceFeatureVideo } from "@/components/sections/section-space/space-fea
 export const SectionSpace = (): React.JSX.Element => {
   return (
     <section id="space" className="overflow-hidden bg-stone py-20">
-      <div className="px-6 pb-12 md:px-10">
+      <div className="mx-auto max-w-6xl px-6 pb-12 md:px-10">
         <Reveal>
           <h2 className="font-display text-[clamp(3rem,16vw,5.5rem)] leading-[0.88] text-charcoal">
             {en.space.headline}
@@ -23,8 +23,8 @@ export const SectionSpace = (): React.JSX.Element => {
         </Reveal>
       </div>
 
-      <Reveal className="flex flex-col gap-[3px]">
-        <div className="group relative aspect-video overflow-hidden">
+      <Reveal className="mx-auto flex max-w-6xl flex-col gap-[3px] px-[3px] md:px-10">
+        <div className="group relative aspect-video overflow-hidden md:aspect-[16/10]">
           <LuxuryImageFrame className="h-full w-full">
             <SpaceFeatureVideo
               src={videos.space}
@@ -46,13 +46,13 @@ export const SectionSpace = (): React.JSX.Element => {
             <Reveal
               key={panel.caption}
               delay={(index % 2) as 0 | 1}
-              className="group relative aspect-3/4 overflow-hidden"
+              className="group relative aspect-3/4 overflow-hidden md:aspect-[4/5]"
             >
               <LuxuryImageFrame className="h-full w-full">
                 <SiteImage
                   src={images.space[index + 1]}
                   alt={panel.alt}
-                  sizes="50vw"
+                  sizes="(min-width: 768px) 576px, 50vw"
                   className="space-img object-cover object-center"
                 />
               </LuxuryImageFrame>
@@ -68,7 +68,7 @@ export const SectionSpace = (): React.JSX.Element => {
         </div>
       </Reveal>
 
-      <Reveal className="mt-[3px] grid grid-cols-2 gap-px border border-concrete bg-concrete">
+      <Reveal className="mx-auto mt-[3px] grid max-w-6xl grid-cols-2 gap-px border border-concrete bg-concrete px-[3px] md:px-10">
         {en.space.attributes.map((attr) => (
           <div key={attr.label} className="bg-stone px-5 py-7">
             <span className="mb-2.5 block text-[0.58rem] uppercase tracking-[0.3em] text-titanium">

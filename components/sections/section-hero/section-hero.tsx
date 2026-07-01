@@ -46,7 +46,7 @@ export const SectionHero = (): React.JSX.Element => {
       try {
         await video.play();
       } catch {
-        setUseVideo(false);
+        // Autoplay may be blocked briefly; keep the video element mounted.
       }
     };
 
@@ -66,6 +66,7 @@ export const SectionHero = (): React.JSX.Element => {
             muted
             loop
             playsInline
+            preload="auto"
             poster={images.hero}
             className="absolute inset-0 h-full w-full object-cover object-center"
             aria-hidden="true"

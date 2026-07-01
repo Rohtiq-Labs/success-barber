@@ -39,7 +39,7 @@ export const en = {
       '"Every man who walks in here deserves to walk out transformed."',
     detail:
       "From the moment you enter, the atmosphere signals something different. Premium materials. Measured light. The quiet confidence of a team that lives for their craft.",
-    imageAlt: "Success Barber Shop exterior — Westview Terrace, Dubai",
+    imageAlt: "Success Barbershop studio interior — barber stations with branded capes",
     pillars: [
       {
         number: "I",
@@ -182,20 +182,20 @@ export const en = {
     instagramCta: "Follow @successbarberdxb",
     cells: [
       {
-        label: "Dubai Marina · The Studio",
-        alt: "Success Barbershop studio floor — Dubai Marina",
-      },
-      {
-        label: "Fade Detail",
-        alt: "Precision fade detail — clipper work at Success Barbershop",
-      },
-      {
         label: null,
-        alt: "Satisfied client at Success Barbershop Dubai",
+        alt: "Hot towel beard grooming at Success Barbershop",
       },
       {
-        label: "The Artists",
-        alt: "Full grooming experience at Success Barbershop",
+        label: "Scissor Craft",
+        alt: "Precision scissor work on curly hair at Success Barbershop",
+      },
+      {
+        label: "The Transformation",
+        alt: "Curly hair styling — satisfied client at Success Barbershop",
+      },
+      {
+        label: "The Studio",
+        alt: "Success Barbershop interior — lounge and barber stations",
       },
     ],
   },
@@ -284,6 +284,15 @@ export const en = {
       },
     ],
   },
+  brand: {
+    eyebrow: "The Brand",
+    headline: "Wear",
+    headlineEm: "Success",
+    body: "Premium apparel bearing the Success mark — crafted for men who carry confidence beyond the chair.",
+    videoAlt: "Success Barbershop premium logo apparel collection",
+    cta: "View on Instagram",
+    ctaHref: "https://www.instagram.com/successbarberdxb/",
+  },
   map: {
     ariaLabel: "Success Barbershop location map",
     title: "Map showing Success Barber Shop and Spa at Westview Terrace, Dubai",
@@ -295,6 +304,7 @@ export const en = {
       { label: "Experience", href: "#experience" },
       { label: "Services", href: "#services" },
       { label: "Artists", href: "#artists" },
+      { label: "The Brand", href: "#brand" },
       { label: "The Space", href: "#space" },
       { label: "Visit", href: "#visit" },
       { label: "Instagram", href: "https://www.instagram.com/successbarberdxb/" },
