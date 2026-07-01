@@ -1,15 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { en } from "@/data/dictionary/en";
 import { images, videos, WHATSAPP_URL } from "@/data/images";
-import { SiteImage } from "@/components/ui/site-image";
+import { BackgroundVideo } from "@/components/ui/background-video";
 
 export const SectionHero = (): React.JSX.Element => {
   const bloomRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [useVideo, setUseVideo] = useState(true);
 
   useEffect(() => {
     const bloom = bloomRef.current;
@@ -26,61 +24,19 @@ export const SectionHero = (): React.JSX.Element => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const updateMotionPreference = (): void => {
-      setUseVideo(!motionQuery.matches);
-    };
-
-    updateMotionPreference();
-    motionQuery.addEventListener("change", updateMotionPreference);
-
-    return () => motionQuery.removeEventListener("change", updateMotionPreference);
-  }, []);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video || !useVideo) return;
-
-    const playVideo = async (): Promise<void> => {
-      try {
-        await video.play();
-      } catch {
-        // Autoplay may be blocked briefly; keep the video element mounted.
-      }
-    };
-
-    void playVideo();
-  }, [useVideo]);
-
   return (
     <section
       id="hero"
       className="relative flex h-[75vh] flex-col items-start justify-center overflow-hidden md:min-h-[600px] md:h-svh md:items-stretch md:justify-end"
     >
       <div className="absolute inset-0 overflow-hidden bg-charcoal">
-        {useVideo ? (
-          <video
-            ref={videoRef}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            poster={images.hero}
-            className="absolute inset-0 h-full w-full object-cover object-center"
-            aria-hidden="true"
-          >
-            <source src={videos.hero} type="video/mp4" />
-          </video>
-        ) : (
-          <SiteImage
-            src={images.hero}
-            alt={en.hero.imageAlt}
-            priority
-            className="object-cover object-center"
-          />
-        )}
+        <BackgroundVideo
+          src={videos.hero}
+          poster={images.hero}
+          alt={en.hero.imageAlt}
+          priority
+          sizes="100vw"
+        />
         <div className="hero-lines absolute inset-0 z-1" aria-hidden="true" />
         <div
           ref={bloomRef}
