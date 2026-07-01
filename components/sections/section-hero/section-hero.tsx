@@ -3,8 +3,8 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { en } from "@/data/dictionary/en";
-import { images, videos, WHATSAPP_URL } from "@/data/images";
-import { BackgroundVideo } from "@/components/ui/background-video";
+import { images, WHATSAPP_URL } from "@/data/images";
+import { HeroBackgroundVideo } from "@/components/sections/section-hero/hero-background-video";
 
 export const SectionHero = (): React.JSX.Element => {
   const bloomRef = useRef<HTMLDivElement>(null);
@@ -30,13 +30,7 @@ export const SectionHero = (): React.JSX.Element => {
       className="relative flex h-[75vh] flex-col items-start justify-center overflow-hidden md:min-h-[600px] md:h-svh md:items-stretch md:justify-end"
     >
       <div className="absolute inset-0 overflow-hidden bg-charcoal">
-        <BackgroundVideo
-          src={videos.hero}
-          poster={images.hero}
-          alt={en.hero.imageAlt}
-          priority
-          sizes="100vw"
-        />
+        <HeroBackgroundVideo poster={images.hero} alt={en.hero.imageAlt} />
         <div className="hero-lines absolute inset-0 z-1" aria-hidden="true" />
         <div
           ref={bloomRef}
