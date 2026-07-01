@@ -88,17 +88,20 @@ export const SectionGallery = (): React.JSX.Element => {
         </div>
       </Reveal>
 
-      <Reveal className="mx-auto mt-10 flex max-w-6xl items-center gap-4 px-6 md:px-10">
-        <div className="h-px flex-1 bg-concrete" />
-        <a
-          href="https://www.instagram.com/successbarberdxb/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="link-luxury shrink-0 text-[0.68rem] font-medium uppercase tracking-[0.22em] text-titanium hover:text-charcoal"
-        >
-          {en.gallery.instagramCta}
-        </a>
-        <div className="h-px flex-1 bg-concrete" />
+      <Reveal className="mx-auto mt-10 flex max-w-6xl flex-wrap items-center justify-center gap-x-8 gap-y-3 px-6 md:px-10">
+        <div className="hidden h-px flex-1 bg-concrete md:block" />
+        {en.gallery.socialLinks.map((link) => (
+          <a
+            key={link.label}
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="link-luxury shrink-0 text-[0.68rem] font-medium uppercase tracking-[0.22em] text-titanium hover:text-charcoal"
+          >
+            {link.text}
+          </a>
+        ))}
+        <div className="hidden h-px flex-1 bg-concrete md:block" />
       </Reveal>
     </section>
   );

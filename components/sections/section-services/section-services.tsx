@@ -1,5 +1,5 @@
 import { en } from "@/data/dictionary/en";
-import { WHATSAPP_URL } from "@/data/images";
+import { BOOKING_URL } from "@/data/images";
 import { Reveal } from "@/components/ui/reveal";
 
 type ServiceItemProps = {
@@ -141,7 +141,7 @@ export const SectionServices = (): React.JSX.Element => {
             </p>
           </div>
           <a
-            href={WHATSAPP_URL}
+            href={BOOKING_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-luxury inline-flex shrink-0 items-center justify-center self-start bg-ivory px-8 py-4 text-[0.7rem] font-medium tracking-[0.22em] text-charcoal uppercase hover:bg-titanium hover:text-ivory md:self-auto"

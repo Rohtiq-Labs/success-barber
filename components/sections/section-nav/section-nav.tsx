@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { en } from "@/data/dictionary/en";
-import { WHATSAPP_URL } from "@/data/images";
+import { BOOKING_URL } from "@/data/images";
 
 export const SectionNav = (): React.JSX.Element => {
   const [scrolled, setScrolled] = useState(false);
@@ -34,7 +34,7 @@ export const SectionNav = (): React.JSX.Element => {
         {en.nav.logo}
       </Link>
       <a
-        href={WHATSAPP_URL}
+        href={BOOKING_URL}
         target="_blank"
         rel="noopener noreferrer"
         className={`btn-luxury px-5 py-2.5 text-[0.7rem] font-medium uppercase tracking-[0.2em] ${

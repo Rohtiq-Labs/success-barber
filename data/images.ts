@@ -1,5 +1,6 @@
 const IMG = "/assets/images";
 const NEW_IMG = "/assets/new-images";
+const BRANDS = "/assets/brands";
 const CRAFT = `${IMG}/craft`;
 const VID = "/assets/videos";
 
@@ -25,6 +26,10 @@ export const images = {
     `${IMG}/467426730_17865187275256305_6552006990329879324_n.jpg`,
     `${IMG}/469105465_17867251731256305_1208451425520129091_n.jpg`,
   ],
+  productBrands: {
+    stmt: `${BRANDS}/images.png`,
+    philipMartins: `${BRANDS}/philip-martin.jpeg`,
+  },
 } as const;
 
 export const videos = {
@@ -33,4 +38,14 @@ export const videos = {
   brand: `${VID}/cloths.mp4`,
 } as const;
 
-export const WHATSAPP_URL = "https://wa.me/971528737000";
+export const WHATSAPP_URL = "https://wa.me/971521400990";
+
+export const BOOKING_URL =
+  "https://www.fresha.com/en-GB/a/success-barbershop-dby-success-barber-shop-dubai-wharf-tower-1-shop-3-vesmsknc/all-offer?menu=true&pId=1284162";
+
+export const socialLinks = {
+  instagram: "https://www.instagram.com/successbarberdxb",
+  facebook:
+    "https://www.facebook.com/people/Success-barber-shop/61561995945983/",
+  tiktok: "https://www.tiktok.com/@successbarbershopdxb",
+} as const;

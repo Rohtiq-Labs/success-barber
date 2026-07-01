@@ -24,7 +24,7 @@ const bebas = Bebas_Neue({
 export const metadata: Metadata = {
   title: "Success Barbershop — Dubai's First Latin-Inspired Grooming Destination",
   description:
-    "Dubai Marina's first international Latin-inspired grooming destination. Precision fades, beard craftsmanship, and luxury barbering.",
+    "Dubai's first international Latin-inspired grooming destination. Precision fades, beard craftsmanship, and luxury barbering.",
 };
 
 const RootLayout = ({

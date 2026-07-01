@@ -1,6 +1,7 @@
 import { en } from "@/data/dictionary/en";
 import { ArrowIcon } from "@/components/ui/arrow-icon";
 import { Reveal } from "@/components/ui/reveal";
+import { VisitCtaIcon } from "@/components/ui/visit-cta-icon";
 
 export const SectionVisit = (): React.JSX.Element => {
   return (
@@ -76,13 +77,18 @@ export const SectionVisit = (): React.JSX.Element => {
 
           const content = (
             <>
-              <div className="flex flex-col gap-1">
-                <span className="text-[0.6rem] uppercase tracking-[0.25em] text-ivory/30">
-                  {cta.label}
+              <div className="flex min-w-0 items-center gap-4">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-ivory/15 bg-ivory/5 text-ivory transition-colors duration-300 group-hover:border-ivory/25 group-hover:bg-ivory/8">
+                  <VisitCtaIcon name={cta.icon} />
                 </span>
-                <span className="font-serif text-[1.1rem] text-ivory">
-                  {cta.text}
-                </span>
+                <div className="flex min-w-0 flex-col gap-1">
+                  <span className="text-[0.6rem] uppercase tracking-[0.25em] text-ivory/30">
+                    {cta.label}
+                  </span>
+                  <span className="font-serif text-[1.1rem] text-ivory">
+                    {cta.text}
+                  </span>
+                </div>
               </div>
               <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-ivory/15 transition-colors duration-300 group-hover:border-ivory/30 group-hover:bg-ivory/5">
                 <ArrowIcon />

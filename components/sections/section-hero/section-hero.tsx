@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { en } from "@/data/dictionary/en";
-import { images, videos, WHATSAPP_URL } from "@/data/images";
+import { images, videos, BOOKING_URL } from "@/data/images";
 import { BackgroundVideo } from "@/components/ui/background-video";
 
 export const SectionHero = (): React.JSX.Element => {
@@ -64,7 +64,7 @@ export const SectionHero = (): React.JSX.Element => {
         </p>
         <div className="flex animate-fade-up justify-start gap-3.5 opacity-0 [animation-delay:1.2s] motion-reduce:opacity-100">
           <a
-            href={WHATSAPP_URL}
+            href={BOOKING_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-luxury inline-block bg-ivory px-6.5 py-3.5 text-[0.7rem] font-medium uppercase tracking-[0.22em] text-charcoal hover:bg-titanium hover:text-ivory"

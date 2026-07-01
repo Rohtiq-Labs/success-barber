@@ -246,6 +246,32 @@ body {
   transform: scale(1.03);
 }
 
+.review-card {
+  transition:
+    border-color 0.45s ease,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.review-card:hover {
+  transform: translateY(-3px);
+}
+
+.review-featured {
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.review-featured:hover {
+  transform: translateY(-2px);
+}
+
+.review-featured:hover .review-bar {
+  width: 100%;
+}
+
+.review-bar {
+  transition: width 0.6s ease-out;
+}
+
 .gallery-img,
 .space-img,
 .artist-img,
