@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, Cormorant_Garamond, Inter } from "next/font/google";
-import { videos } from "@/data/images";
 import "./globals.css";
 
 const inter = Inter({
@@ -38,14 +37,6 @@ const RootLayout = ({
       lang="en"
       className={`${inter.variable} ${cormorant.variable} ${bebas.variable} h-full antialiased`}
     >
-      <head>
-        <link
-          rel="preload"
-          href={videos.hero}
-          as="video"
-          type="video/mp4"
-        />
-      </head>
       <body className="min-h-full font-sans">{children}</body>
     </html>
   );

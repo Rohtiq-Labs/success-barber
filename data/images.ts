@@ -29,8 +29,6 @@ export const images = {
 
 export const videos = {
   hero: `${VID}/hero-background.mp4`,
-  /** ~720p faststart encode for mobile; add public/assets/videos/hero-background-mobile.mp4 */
-  heroMobile: `${VID}/hero-background-mobile.mp4`,
   space: `${VID}/video-02.mp4`,
   brand: `${VID}/cloths.mp4`,
 } as const;

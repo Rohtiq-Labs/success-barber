@@ -1,10 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import {
-  attachPersistentVideo,
-  detachPersistentVideo,
-} from "@/lib/persistent-video";
 import { SiteImage } from "@/components/ui/site-image";
 
 type BackgroundVideoProps = {
@@ -28,25 +24,21 @@ export const BackgroundVideo = ({
   decorative = true,
 }: BackgroundVideoProps): React.JSX.Element => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [mounted, setMounted] = useState(false);
-  const [shouldLoad, setShouldLoad] = useState(false);
-
-  const mediaClass = `absolute inset-0 h-full w-full ${className}`;
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [showVideo, setShowVideo] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    if (!mounted) return;
-
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
     if (prefersReducedMotion) return;
 
+    const enableVideo = (): void => {
+      setShowVideo(true);
+    };
+
     if (priority) {
-      setShouldLoad(true);
+      enableVideo();
       return;
     }
 
@@ -56,7 +48,7 @@ export const BackgroundVideo = ({
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry?.isIntersecting) {
-          setShouldLoad(true);
+          enableVideo();
           observer.disconnect();
         }
       },
@@ -65,42 +57,24 @@ export const BackgroundVideo = ({
 
     observer.observe(container);
     return () => observer.disconnect();
-  }, [mounted, priority]);
+  }, [priority]);
 
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container || !shouldLoad) return;
-
-    const videoClass = `absolute inset-0 h-full w-full ${className}`;
-    const video = attachPersistentVideo(
-      src,
-      container,
-      videoClass,
-      priority ? "metadata" : "auto",
-    );
-
-    if (decorative) {
-      video.setAttribute("aria-hidden", "true");
-      video.removeAttribute("aria-label");
-    } else {
-      video.removeAttribute("aria-hidden");
-      video.setAttribute("aria-label", alt);
-    }
+    const video = videoRef.current;
+    if (!video || !showVideo) return;
 
     const play = async (): Promise<void> => {
       try {
         await video.play();
       } catch {
-        // Autoplay may be blocked; poster remains visible underneath.
+        // Autoplay may be blocked; poster frame remains visible underneath.
       }
     };
 
     void play();
+  }, [showVideo]);
 
-    return () => {
-      detachPersistentVideo(video, container);
-    };
-  }, [shouldLoad, src, className, priority, decorative, alt]);
+  const mediaClass = `absolute inset-0 h-full w-full ${className}`;
 
   return (
     <div
@@ -114,6 +88,20 @@ export const BackgroundVideo = ({
         priority={priority}
         className={mediaClass}
       />
+      {showVideo ? (
+        <video
+          ref={videoRef}
+          src={src}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload={priority ? "metadata" : "auto"}
+          aria-hidden={decorative ? true : undefined}
+          aria-label={decorative ? undefined : alt}
+          className={mediaClass}
+        />
+      ) : null}
     </div>
   );
 };
