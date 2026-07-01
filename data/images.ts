@@ -1,6 +1,7 @@
 const IMG = "/assets/images";
 const NEW_IMG = "/assets/new-images";
 const BRANDS = "/assets/brands";
+const ARTISTS = "/assets/artists";
 const CRAFT = `${IMG}/craft`;
 const VID = "/assets/videos";
 
@@ -17,14 +18,15 @@ export const images = {
     `${NEW_IMG}/interioir.jpeg`,
   ],
   artists: [
-    `${IMG}/488316381_17882381796256305_7693056712276859620_n.jpg`,
-    `${IMG}/500101694_1843388119848740_2928094562129408245_n.jpg`,
-    `${IMG}/458243251_17854572216256305_3429423906153086280_n.jpg`,
+    `${ARTISTS}/team-01.jpeg`,
+    `${ARTISTS}/team-02.webp`,
+    `${ARTISTS}/team-03.webp`,
+    `${ARTISTS}/team-04.webp`,
   ],
   space: [
     `${IMG}/458243251_17854572216256305_3429423906153086280_n.jpg`,
-    `${IMG}/467426730_17865187275256305_6552006990329879324_n.jpg`,
-    `${IMG}/469105465_17867251731256305_1208451425520129091_n.jpg`,
+    `${IMG}/space-02.jpg`,
+    `${IMG}/space-03.jpg`,
   ],
   productBrands: {
     stmt: `${BRANDS}/images.png`,

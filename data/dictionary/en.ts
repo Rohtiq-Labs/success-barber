@@ -251,28 +251,11 @@ export const en = {
     eyebrow: "The Team",
     headline: "The",
     headlineBreak: "Artists",
-    members: [
-      {
-        num: "01",
-        name: "Jovany",
-        role: "Lead Artist · Curl Specialist",
-        spec: "Dubai's foremost curl perm specialist. Jovany transforms natural texture into statement — trusted by the city's most style-conscious clients.",
-        alt: "Jovany — beard and curl specialist at Success Barbershop",
-      },
-      {
-        num: "02",
-        name: "Koro",
-        role: "Senior Barber · Fade Architect",
-        spec: "Precision fade specialist with a signature eye for symmetry. Known for exceptional client hospitality and meticulous edge work.",
-        alt: "Koro — fade architect at Success Barbershop",
-      },
-      {
-        num: "03",
-        name: "The Team",
-        role: "All Barbers · Full Service",
-        spec: "Each member of the Success team brings international training and a shared commitment to craftsmanship. Every artist, every time.",
-        alt: "The Success Barbershop team at work",
-      },
+    images: [
+      { alt: "Success Barbershop team member" },
+      { alt: "Success Barbershop team member" },
+      { alt: "Success Barbershop team member" },
+      { alt: "Success Barbershop team member" },
     ],
   },
   space: {
@@ -281,8 +264,8 @@ export const en = {
     desc: "Designed as a destination. Westview Terrace, Shop 1 — a location as refined as the experience within.",
     panels: [
       { caption: "The Studio — Dubai", alt: "Success Barbershop studio — four private chairs, Dubai" },
-      { caption: "Products", alt: "Premium grooming products at Success Barbershop" },
-      { caption: "Craft", alt: "Precision clipper work — Success Barbershop craft" },
+      { caption: "Craft", alt: "Straight razor shave with hot towel at Success Barbershop" },
+      { caption: "The Studio", alt: "Success Barbershop interior — barbers at work in Dubai" },
     ],
     attributes: [
       { label: "Location", value: [...shopAddress.short] },

@@ -21,35 +21,21 @@ export const SectionArtists = (): React.JSX.Element => {
         </Reveal>
       </div>
 
-      <div className="mx-auto flex max-w-6xl gap-[3px] overflow-x-auto px-6 py-12 [scrollbar-width:none] md:grid md:grid-cols-3 md:overflow-visible md:px-10 md:pb-15 [&::-webkit-scrollbar]:hidden">
-        {en.artists.members.map((artist, index) => (
+      <div className="mx-auto grid max-w-6xl grid-cols-2 gap-[3px] px-6 py-12 md:grid-cols-4 md:px-10 md:pb-15">
+        {images.artists.map((src, index) => (
           <Reveal
-            key={artist.num}
+            key={src}
             delay={(index % 4) as 0 | 1 | 2 | 3}
-            className="w-[72vw] max-w-[280px] shrink-0 md:h-full md:w-auto md:max-w-none md:shrink"
+            className="h-full"
           >
-            <article className="group h-full">
-            <div className="relative mb-5 aspect-3/4 overflow-hidden bg-concrete md:aspect-[4/5]">
+            <div className="relative aspect-3/4 overflow-hidden bg-concrete md:aspect-[4/5]">
               <SiteImage
-                src={images.artists[index]}
-                alt={artist.alt}
-                sizes="(min-width: 768px) 384px, 72vw"
+                src={src}
+                alt={en.artists.images[index]?.alt ?? "Success Barbershop team member"}
+                sizes="(min-width: 768px) 288px, 50vw"
                 className="artist-img object-cover object-center"
               />
-              <span className="absolute top-4 right-4 z-2 font-serif text-[0.7rem] italic text-ivory/25">
-                {artist.num}
-              </span>
             </div>
-            <h3 className="mb-1 font-serif text-[1.4rem] font-normal text-ivory">
-              {artist.name}
-            </h3>
-            <p className="mb-3 text-[0.7rem] uppercase tracking-[0.2em] text-titanium">
-              {artist.role}
-            </p>
-            <p className="text-[0.78rem] leading-[1.7] text-ivory/35">
-              {artist.spec}
-            </p>
-            </article>
           </Reveal>
         ))}
       </div>
